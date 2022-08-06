@@ -8,7 +8,6 @@ namespace Tortoise.HOPPER
     [Serializable]
     public class PlayerAnimationData
     {
-        [field: SerializeField] [field: Range(0f, 20f)] public float BlendTreeAccel { get; private set; }
         public int SpeedParamHash { get; private set; }
         public int GroundedParamHash { get; private set; }
         public int AirborneParamHash { get; private set; }

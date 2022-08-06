@@ -30,7 +30,7 @@ namespace Tortoise.HOPPER
             base.PhysicsUpdate();
 
             if (_StateMachine.MovementInput == Vector2.zero && IsMovingHorizontally(Mathf.Epsilon))
-                DecelerateXZ(_Player.AirNegAccel);
+                DecelerateXZ(_Player.Data.AirNegAccel);
 
             LimitFallVelocity();
         }
@@ -53,12 +53,12 @@ namespace Tortoise.HOPPER
         {
             var verticalVelocity = GetVerticalVelocity();
 
-            if (verticalVelocity.y > -_Player.FallMaxVelocity)
+            if (verticalVelocity.y > -_Player.Data.FallMaxVelocity)
             {
                 return;
             }
 
-            var limitVelocity = new Vector3(0f, -_Player.FallMaxVelocity - verticalVelocity.y, 0f);
+            var limitVelocity = new Vector3(0f, -_Player.Data.FallMaxVelocity - verticalVelocity.y, 0f);
 
             _Player.Rigidbody.AddForce(limitVelocity, ForceMode.VelocityChange);
         }

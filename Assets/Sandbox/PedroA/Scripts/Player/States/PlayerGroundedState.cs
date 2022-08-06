@@ -19,7 +19,7 @@ namespace Tortoise.HOPPER
             _Player.SetAnimationBool(_Player.AnimationData.AirborneParamHash, false);
             _Player.SetAnimationBool(_Player.AnimationData.GroundedParamHash, true);
 
-            _StateMachine.AdditionalJumps = _Player.AdditionalJumps;
+            _StateMachine.AdditionalJumps = _Player.Data.AdditionalJumps;
         }
 
         public override void Exit()
@@ -47,7 +47,7 @@ namespace Tortoise.HOPPER
             Float();
 
             if (_StateMachine.MovementInput == Vector2.zero && IsMovingHorizontally(Mathf.Epsilon))
-                DecelerateXZ(_Player.GroundNegAccel);
+                DecelerateXZ(_Player.Data.GroundNegAccel);
         }
         #endregion
 
@@ -57,7 +57,7 @@ namespace Tortoise.HOPPER
             var capsuleCenterWorldSpace = _Player.FloatingCapsule.Collider.bounds.center;
             var downwardsRayFromCenter = new Ray(capsuleCenterWorldSpace, Vector3.down);
 
-            if (Physics.Raycast(downwardsRayFromCenter, out RaycastHit hit, _Player.FloatingCapsule.FloatRayDistance, _Player.GroundLayer, QueryTriggerInteraction.Ignore))
+            if (Physics.Raycast(downwardsRayFromCenter, out RaycastHit hit, _Player.FloatingCapsule.FloatRayDistance, _Player.Data.GroundLayer, QueryTriggerInteraction.Ignore))
             {
                 var groundAngle = Vector3.Angle(hit.normal, -downwardsRayFromCenter.direction);
                 // Debug.Log(groundAngle);
@@ -70,7 +70,7 @@ namespace Tortoise.HOPPER
                     // _StateMachine.AdditionalJumps = 0;
                     var pushForce = hit.normal + Vector3.down;
                     // Debug.DrawRay(_Player.FloatingCapsule.Collider.bounds.center, pushForce * 5f, Color.magenta);
-                    _Player.Rigidbody.AddForce(pushForce * _Player.SlideOffForce, ForceMode.Acceleration);
+                    _Player.Rigidbody.AddForce(pushForce * _Player.Data.SlideOffForce, ForceMode.Acceleration);
                     return;
                 }
                 
@@ -91,7 +91,7 @@ namespace Tortoise.HOPPER
             var capsuleCenterWorldSpace = _Player.FloatingCapsule.Collider.bounds.center;
             var downwardsRayFromCapsuleBottom = new Ray(capsuleCenterWorldSpace - _Player.FloatingCapsule.Collider.bounds.extents, Vector3.down);
 
-            return Physics.Raycast(downwardsRayFromCapsuleBottom, out _, _Player.GroundToFallRayDistance, _Player.GroundLayer, QueryTriggerInteraction.Ignore);
+            return Physics.Raycast(downwardsRayFromCapsuleBottom, out _, _Player.Data.GroundToFallRayDistance, _Player.Data.GroundLayer, QueryTriggerInteraction.Ignore);
         }
         #endregion
 

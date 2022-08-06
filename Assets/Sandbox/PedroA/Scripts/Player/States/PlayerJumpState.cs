@@ -26,9 +26,9 @@ namespace Tortoise.HOPPER
 
         public override void Exit()
         {
-            base.Exit();
-
             _Player.SetAnimationBool(_Player.AnimationData.JumpingParamHash, false);
+
+            base.Exit();
 
             _canStartFalling = false;
         }
@@ -49,12 +49,13 @@ namespace Tortoise.HOPPER
             if (!_canStartFalling || GetVerticalVelocity().y > 0)
                 return;
             
+
             if (_Player.Input.PlayerActions.Jump.IsPressed() && _StateMachine.AdditionalJumps <= 0)
             {
                 _StateMachine.ChangeState(_StateMachine.GlideState);
                 return;
             }
-            
+
             _StateMachine.ChangeState(_StateMachine.FallState);
         }
 
@@ -62,10 +63,10 @@ namespace Tortoise.HOPPER
         {
             base.PhysicsUpdate();
 
-            DecelerateY(_Player.AirCounterY);
+            DecelerateY(_Player.Data.AirCounterY);
 
             if (_StateMachine.MovementInput == Vector2.zero && IsMovingHorizontally(Mathf.Epsilon))
-                DecelerateXZ(_Player.AirNegAccel);
+                DecelerateXZ(_Player.Data.AirNegAccel);
         }
 
         public override void EnterTrigger(Collider collider)

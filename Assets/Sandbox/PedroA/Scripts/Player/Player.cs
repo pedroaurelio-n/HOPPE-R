@@ -8,25 +8,9 @@ namespace Tortoise.HOPPER
     [RequireComponent(typeof(PlayerInputHandler))]
     public class Player : MonoBehaviour
     {
+        [field: SerializeField] public PlayerSO Data { get; private set; }
         [field: SerializeField] public PlayerAnimationData AnimationData { get; private set; }
         [field: SerializeField] public Transform InputSpace { get; private set; }
-        [field: SerializeField] [field: Range(0f, 15f)] public float BaseSpeed { get; private set; }
-        [field: SerializeField] [field: Range(0f, 30f)] public float RotationSpeed { get; private set; }
-        [field: SerializeField] [field: Range(1f, 3f)] public float SprintModifier { get; private set; }
-        [field: SerializeField] public AnimationCurve SlopeSpeedAngles { get; private set; }
-        [field: SerializeField] [field: Range(0f, 20f)] public float GroundNegAccel { get; private set; }
-        [field: SerializeField] [field: Range(0f, 20f)] public float AirNegAccel { get; private set; }
-        [field: SerializeField] [field: Range(0f, 5f)] public float AirCounterSprint { get; private set; }
-        [field: SerializeField] [field: Range(0f, 20f)] public float AirCounterY { get; private set; }
-        [field: SerializeField] [field: Range(0f, 50f)] public float SlideOffForce { get; private set; }
-        [field: SerializeField] public LayerMask GroundLayer { get; private set; }
-        [field: SerializeField] public Vector3 GroundOverlapOffset { get; private set; }
-        [field: SerializeField] public float GroundOverlapRadius { get; private set; }
-        [field: SerializeField] public float GroundToFallRayDistance { get; private set; }
-        [field: SerializeField] [field: Range(0f, 10f)] public float JumpHeight { get; private set; }
-        [field: SerializeField] [field: Range(0, 5)] public int AdditionalJumps { get; private set; }
-        [field: SerializeField] [field: Range(1f, 15f)] public float FallMaxVelocity { get; private set; }
-        [field: SerializeField] [field: Range(1f, 15f)] public float GlideMaxVelocity { get; private set; }
         
         public Rigidbody Rigidbody { get; private set; }
         public PlayerInputHandler Input { get; private set; }
@@ -76,7 +60,7 @@ namespace Tortoise.HOPPER
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position + GroundOverlapOffset, GroundOverlapRadius);
+            Gizmos.DrawWireSphere(transform.position + Data.GroundOverlapOffset, Data.GroundOverlapRadius);
         }
 
         public void SetAnimationBool(int paramHash, bool value)

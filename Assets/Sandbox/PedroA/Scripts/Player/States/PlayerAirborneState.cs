@@ -24,7 +24,7 @@ namespace Tortoise.HOPPER
         {
             base.LogicUpdate();
 
-            _StateMachine.SpeedModifier = Mathf.MoveTowards(_StateMachine.SpeedModifier, 1f, _Player.AirCounterSprint * Time.deltaTime);
+            _StateMachine.SpeedModifier = Mathf.MoveTowards(_StateMachine.SpeedModifier, 1f, _Player.Data.AirCounterSprint * Time.deltaTime);
         }
         #endregion
 

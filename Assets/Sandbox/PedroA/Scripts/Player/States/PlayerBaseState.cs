@@ -77,7 +77,7 @@ namespace Tortoise.HOPPER
             _StateMachine.MovementInput = _Player.Input.PlayerActions.Move.ReadValue<Vector2>();
             var clampedInput = Mathf.Clamp01(Mathf.Abs(_StateMachine.MovementInput.x) + Mathf.Abs(_StateMachine.MovementInput.y));
 
-            _StateMachine.MoveAmount = Mathf.MoveTowards(_StateMachine.MoveAmount, clampedInput, _Player.AnimationData.BlendTreeAccel * Time.deltaTime);
+            _StateMachine.MoveAmount = Mathf.MoveTowards(_StateMachine.MoveAmount, clampedInput, _Player.Data.PosAccel * Time.deltaTime);
         }
 
         private void Move()
@@ -97,7 +97,7 @@ namespace Tortoise.HOPPER
         private void Rotate(Vector3 direction)
         {
             var lookDirection = Quaternion.LookRotation(direction, Vector3.up);
-            _Player.transform.rotation = Quaternion.RotateTowards(_Player.transform.rotation, lookDirection, _Player.RotationSpeed);
+            _Player.transform.rotation = Quaternion.RotateTowards(_Player.transform.rotation, lookDirection, _Player.Data.RotationSpeed);
         }
         #endregion
 
@@ -161,7 +161,7 @@ namespace Tortoise.HOPPER
 
         protected float GetMovementSpeed(bool shouldConsiderSlopes = true)
         {
-            var speed = _Player.BaseSpeed * _StateMachine.SpeedModifier;
+            var speed = _Player.Data.BaseSpeed * _StateMachine.SpeedModifier;
 
             if (shouldConsiderSlopes)
                 speed *= _StateMachine.SlopeSpeedModifier;
@@ -200,15 +200,15 @@ namespace Tortoise.HOPPER
 
         protected bool IsThereGroundUnderneath()
         {
-            var colliders = Physics.OverlapSphere(_Player.transform.position + _Player.GroundOverlapOffset, _Player.GroundOverlapRadius,
-                                                _Player.GroundLayer, QueryTriggerInteraction.Ignore);
+            var colliders = Physics.OverlapSphere(_Player.transform.position + _Player.Data.GroundOverlapOffset, _Player.Data.GroundOverlapRadius,
+                                                _Player.Data.GroundLayer, QueryTriggerInteraction.Ignore);
 
             return colliders.Length > 0;
         }
 
         protected float SetSlopeSpeedModifierOnAngle(float angle, bool setModifier = true)
         {
-            var slopeSpeedModifier = _Player.SlopeSpeedAngles.Evaluate(angle);
+            var slopeSpeedModifier = _Player.Data.SlopeSpeedAngles.Evaluate(angle);
 
             if (setModifier)
                 _StateMachine.SlopeSpeedModifier = slopeSpeedModifier;
