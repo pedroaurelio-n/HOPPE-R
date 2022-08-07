@@ -32,7 +32,7 @@ namespace Tortoise.HOPPER
         {
             base.LogicUpdate();
 
-            if (_StateMachine.MovementInput == Vector2.zero && !IsMovingHorizontally() || _StateMachine.SlopeSpeedModifier < _Player.Data.SprintMaxAngle)
+            if (_StateMachine.MovementInput == Vector2.zero || _StateMachine.SlopeSpeedModifier < _Player.Data.SprintMaxSlopeValue)
             {
                 _StateMachine.ChangeState(_StateMachine.LocomotionState);
                 return;

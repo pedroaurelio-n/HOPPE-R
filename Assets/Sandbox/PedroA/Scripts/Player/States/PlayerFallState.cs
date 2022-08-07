@@ -32,6 +32,8 @@ namespace Tortoise.HOPPER
             if (_StateMachine.MovementInput == Vector2.zero && IsMovingHorizontally(Mathf.Epsilon))
                 DecelerateXZ(_Player.Data.AirNegAccel);
 
+            IncreaseFallAccel();
+
             LimitFallVelocity();
         }
 
@@ -49,6 +51,12 @@ namespace Tortoise.HOPPER
         #endregion
 
         #region MainMethods
+        private void IncreaseFallAccel()
+        {
+            var newAccel = Vector3.up * Physics.gravity.y * (_Player.Data.FallMultiplier - 1);
+            _Player.Rigidbody.AddForce(newAccel, ForceMode.Acceleration);
+        }
+
         private void LimitFallVelocity()
         {
             var verticalVelocity = GetVerticalVelocity();

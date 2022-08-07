@@ -63,7 +63,8 @@ namespace Tortoise.HOPPER
         {
             base.PhysicsUpdate();
 
-            DecelerateY(_Player.Data.AirCounterY);
+            ApplyLowJumpMultiplier();
+            // DecelerateY(_Player.Data.AirCounterY);
 
             if (_StateMachine.MovementInput == Vector2.zero && IsMovingHorizontally(Mathf.Epsilon))
                 DecelerateXZ(_Player.Data.AirNegAccel);
@@ -81,9 +82,35 @@ namespace Tortoise.HOPPER
         #region MainMethods
         private void Jump()
         {
-            var jumpForce = new Vector3(0f, _StateMachine.JumpForce, 0f);
+            var jumpDirection = Vector3.up;
 
-            _Player.Rigidbody.AddForce(jumpForce, ForceMode.VelocityChange);
+            // var capsuleCenterWorldSpace = _Player.FloatingCapsule.Collider.bounds.center;
+            // var downwardsRayFromCenter = new Ray(capsuleCenterWorldSpace, Vector3.down);
+
+            // if (Physics.Raycast(downwardsRayFromCenter, out RaycastHit hit, _Player.FloatingCapsule.FloatRayDistance, _Player.Data.GroundLayer, QueryTriggerInteraction.Ignore))
+            // {
+            //     var groundAngle = Vector3.Angle(hit.normal, -downwardsRayFromCenter.direction);
+
+            //     var slopeSpeedModifier = SetSlopeSpeedModifierOnAngle(groundAngle, false);
+
+
+            //     if (slopeSpeedModifier <= _Player.Data.UpJumpMaxSlopeValue)
+            //     {
+            //         jumpDirection = (hit.normal + Vector3.up).normalized;
+            //         // jumpForce += hit.normal;
+            //     }
+            // }
+
+            Debug.DrawRay(_Player.transform.position, jumpDirection * _StateMachine.JumpForce, Color.cyan, 5f);
+            _Player.Rigidbody.AddForce(jumpDirection * _StateMachine.JumpForce, ForceMode.VelocityChange);
+        }
+
+        private void ApplyLowJumpMultiplier()
+        {
+            var newAccel = Vector3.up * Physics.gravity.y * (_Player.Data.LowJumpMultiplier - 1);
+
+            if (GetVerticalVelocity().y > 0 && !_Player.Input.PlayerActions.Jump.IsPressed())
+                _Player.Rigidbody.AddForce(newAccel, ForceMode.Acceleration);
         }
         #endregion
     }

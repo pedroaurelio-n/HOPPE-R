@@ -31,7 +31,8 @@ namespace Tortoise.HOPPER
             GlideState = new PlayerGlideState(this);
             SprintState = new PlayerSprintState(this);
 
-            JumpForce = Mathf.Sqrt(-2f * Player.Data.JumpHeight * Physics.gravity.y);
+            var height = Player.Data.JumpHeight - 1f;
+            JumpForce = Mathf.Sqrt(-2f * height * Physics.gravity.y);
         }
     }
 }

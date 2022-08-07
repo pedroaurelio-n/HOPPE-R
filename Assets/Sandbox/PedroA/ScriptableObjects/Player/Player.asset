@@ -65,7 +65,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 50
-      value: 0.55
+      value: 0.35
       inSlope: Infinity
       outSlope: Infinity
       tangentMode: 1
@@ -74,24 +74,6 @@ MonoBehaviour:
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 50.1
-      value: 0.35
-      inSlope: Infinity
-      outSlope: Infinity
-      tangentMode: 1
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 60
-      value: 0.35
-      inSlope: Infinity
-      outSlope: Infinity
-      tangentMode: 1
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 60.1
       value: 0
       inSlope: Infinity
       outSlope: Infinity
@@ -111,13 +93,12 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  <SprintMaxAngle>k__BackingField: 0.8
+  <SprintMaxSlopeValue>k__BackingField: 0.8
   <PosAccel>k__BackingField: 3
   <GroundNegAccel>k__BackingField: 10
   <AirNegAccel>k__BackingField: 2
   <AirCounterSprint>k__BackingField: 0.5
-  <AirCounterY>k__BackingField: 1
-  <SlideOffForce>k__BackingField: 3
+  <SlideOffForce>k__BackingField: 25
   <GroundLayer>k__BackingField:
     serializedVersion: 2
     m_Bits: 128
@@ -126,5 +107,9 @@ MonoBehaviour:
   <GroundToFallRayDistance>k__BackingField: 1.3
   <JumpHeight>k__BackingField: 3
   <AdditionalJumps>k__BackingField: 1
-  <FallMaxVelocity>k__BackingField: 15
+  <JumpAngleRayDistance>k__BackingField: 2
+  <UpJumpMaxSlopeValue>k__BackingField: 0.8
+  <FallMultiplier>k__BackingField: 2.5
+  <LowJumpMultiplier>k__BackingField: 2.5
+  <FallMaxVelocity>k__BackingField: 14
   <GlideMaxVelocity>k__BackingField: 2.25

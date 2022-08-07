@@ -32,50 +32,15 @@ namespace Tortoise.HOPPER
 
             _Player.SetAnimationFloat(_Player.AnimationData.SpeedParamHash, _StateMachine.MoveAmount);
 
-            // if (_StateMachine.SlopeSpeedModifier == 0f && _Player.Input.PlayerActions.Jump.enabled)
-            // {
-            //     _Player.Input.PlayerActions.Jump.Disable();
-            // }
-            // else if (!_Player.Input.PlayerActions.Jump.enabled && _StateMachine.SlopeSpeedModifier != 0f)
-            // {
-            //     _Player.Input.PlayerActions.Jump.Enable();
-            // }
-
             if (_StateMachine.MovementInput == Vector2.zero)
                 return;
             
-            if (_Player.Input.PlayerActions.Sprint.IsPressed() && _StateMachine.SlopeSpeedModifier >= _Player.Data.SprintMaxAngle)
+            if (_Player.Input.PlayerActions.Sprint.IsPressed() && _StateMachine.SlopeSpeedModifier >= _Player.Data.SprintMaxSlopeValue)
             {
                 _StateMachine.ChangeState(_StateMachine.SprintState);
                 return;
             }
         }
-        #endregion 
-
-        // #region ReusableMethods
-        // protected override void AddInputCallbacks()
-        // {
-        //     base.AddInputCallbacks();
-            
-        //     _Player.Input.PlayerActions.Sprint.started += OnSprintPerformed;
-        // }
-
-        // protected override void RemoveInputCallbacks()
-        // {
-        //     base.RemoveInputCallbacks();
-
-        //     _Player.Input.PlayerActions.Sprint.started -= OnSprintPerformed;
-        // }
-        // #endregion
-
-        // #region InputMethods
-        // protected void OnSprintPerformed(InputAction.CallbackContext ctx)
-        // {
-        //     if (_StateMachine.MovementInput == Vector2.zero)
-        //         return;
-
-        //     _StateMachine.ChangeState(_StateMachine.SprintState);
-        // }
-        // #endregion
+        #endregion
     }
 }
