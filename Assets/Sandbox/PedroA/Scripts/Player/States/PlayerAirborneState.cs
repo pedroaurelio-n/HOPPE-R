@@ -15,6 +15,8 @@ namespace Tortoise.HOPPER
         public override void Enter()
         {
             base.Enter();
+
+            _StateMachine.SlopeSpeedModifier = 1f;
             
             _Player.SetAnimationBool(_Player.AnimationData.GroundedParamHash, false);
             _Player.SetAnimationBool(_Player.AnimationData.AirborneParamHash, true);

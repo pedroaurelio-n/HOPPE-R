@@ -12,6 +12,7 @@ namespace Tortoise.HOPPER
         [field: SerializeField] [field: Range(0f, 30f)] public float RotationSpeed { get; private set; }
         [field: SerializeField] [field: Range(1f, 3f)] public float SprintSpeedModifier { get; private set; }
         [field: SerializeField] public AnimationCurve SlopeSpeedAngles { get; private set; }
+        [field: SerializeField] [field: Range(0f, 1f)] public float SprintMaxAngle { get; private set; }
 
         [field: Header("Accel/Force Params")]
         [field: SerializeField] [field: Range(0f, 20f)] public float PosAccel { get; private set; }

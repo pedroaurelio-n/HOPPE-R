@@ -44,7 +44,7 @@ namespace Tortoise.HOPPER
             if (_StateMachine.MovementInput == Vector2.zero)
                 return;
             
-            if (_Player.Input.PlayerActions.Sprint.IsPressed() && _StateMachine.SlopeSpeedModifier == 1f)
+            if (_Player.Input.PlayerActions.Sprint.IsPressed() && _StateMachine.SlopeSpeedModifier >= _Player.Data.SprintMaxAngle)
             {
                 _StateMachine.ChangeState(_StateMachine.SprintState);
                 return;
