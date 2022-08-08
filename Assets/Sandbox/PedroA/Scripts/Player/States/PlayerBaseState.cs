@@ -19,7 +19,6 @@ namespace Tortoise.HOPPER
         #region IStateMethods
         public virtual void Enter()
         {
-            // Debug.Log($"Current state: {GetType().Name}");
             StateUpdateHud.UpdateStateList(GetType().Name);
 
             AddInputCallbacks();
@@ -69,10 +68,7 @@ namespace Tortoise.HOPPER
         private void ReadMovementInput()
         {
             if (_StateMachine.SlopeSpeedModifier == 0f)
-            {
-                // _StateMachine.MovementInput = Vector2.zero;
                 return;
-            }
 
             _StateMachine.MovementInput = _Player.Input.PlayerActions.Move.ReadValue<Vector2>();
             var clampedInput = Mathf.Clamp01(Mathf.Abs(_StateMachine.MovementInput.x) + Mathf.Abs(_StateMachine.MovementInput.y));
@@ -176,11 +172,9 @@ namespace Tortoise.HOPPER
             _Player.Rigidbody.AddForce(deceleration * -horizontalVelocity, ForceMode.Acceleration);
         }
 
-        protected void DecelerateY(float deceleration)
+        protected void DecelerateY(Vector3 deceleration)
         {
-            var verticalVelocity = GetVerticalVelocity();
-
-            _Player.Rigidbody.AddForce(deceleration * -verticalVelocity, ForceMode.Acceleration);
+            _Player.Rigidbody.AddForce(deceleration, ForceMode.Acceleration);
         }
 
         protected void ResetVelocity()

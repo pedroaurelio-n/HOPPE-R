@@ -21,13 +21,6 @@ namespace Tortoise.HOPPER
             _StateMachine.SpeedModifier = _Player.Data.SprintSpeedModifier;
         }
 
-        public override void Exit()
-        {
-            base.Exit();
-            
-            // _Player.SetAnimationBool(_Player.AnimationData.SprintingParamHash, false);
-        }
-
         public override void LogicUpdate()
         {
             base.LogicUpdate();

@@ -58,16 +58,13 @@ namespace Tortoise.HOPPER
             if (Physics.Raycast(downwardsRayFromCenter, out RaycastHit hit, _Player.FloatingCapsule.FloatRayDistance, _Player.Data.GroundLayer, QueryTriggerInteraction.Ignore))
             {
                 var groundAngle = Vector3.Angle(hit.normal, -downwardsRayFromCenter.direction);
-                // Debug.Log(groundAngle);
 
                 var slopeSpeedModifier = SetSlopeSpeedModifierOnAngle(groundAngle);
 
                 if (slopeSpeedModifier == 0f)
                 {
                     _StateMachine.MovementInput = Vector2.zero;
-                    // _StateMachine.AdditionalJumps = 0;
                     var pushForce = hit.normal + Vector3.down;
-                    // Debug.DrawRay(_Player.FloatingCapsule.Collider.bounds.center, pushForce * 5f, Color.magenta);
                     _Player.Rigidbody.AddForce(pushForce * _Player.Data.SlideOffForce, ForceMode.Acceleration);
                     return;
                 }
@@ -98,8 +95,6 @@ namespace Tortoise.HOPPER
         {
             if (_StateMachine.SlopeSpeedModifier == 0f)
                 return;
-
-            ResetVelocityY();
 
             _StateMachine.ChangeState(_StateMachine.JumpState);
         }

@@ -54,7 +54,7 @@ namespace Tortoise.HOPPER
         private void IncreaseFallAccel()
         {
             var newAccel = Vector3.up * Physics.gravity.y * (_Player.Data.FallMultiplier - 1);
-            _Player.Rigidbody.AddForce(newAccel, ForceMode.Acceleration);
+            DecelerateY(newAccel);
         }
 
         private void LimitFallVelocity()

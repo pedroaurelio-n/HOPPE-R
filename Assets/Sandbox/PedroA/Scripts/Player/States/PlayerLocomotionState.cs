@@ -21,11 +21,6 @@ namespace Tortoise.HOPPER
             _StateMachine.SpeedModifier = 1f;
         }
 
-        public override void Exit()
-        {
-            base.Exit();
-        }
-
         public override void LogicUpdate()
         {
             base.LogicUpdate();
