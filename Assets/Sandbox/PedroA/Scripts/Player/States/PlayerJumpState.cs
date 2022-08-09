@@ -76,7 +76,15 @@ namespace Tortoise.HOPPER
             base.EnterTrigger(collider);
 
             if (_canStartFalling && IsThereGroundUnderneath())
+            {
+                if (_Player.Input.PlayerActions.Sprint.IsPressed())
+                {
+                    _StateMachine.ChangeState(_StateMachine.SprintState);
+                    return;
+                }
+                
                 _StateMachine.ChangeState(_StateMachine.LocomotionState);
+            }
         }
         #endregion
 

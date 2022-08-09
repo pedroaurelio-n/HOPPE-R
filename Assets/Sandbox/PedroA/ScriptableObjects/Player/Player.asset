@@ -110,6 +110,6 @@ MonoBehaviour:
   <JumpAngleRayDistance>k__BackingField: 1.3
   <UpJumpMaxSlopeValue>k__BackingField: 0.8
   <FallMultiplier>k__BackingField: 2.5
-  <LowJumpMultiplier>k__BackingField: 2.5
+  <LowJumpMultiplier>k__BackingField: 2.1
   <FallMaxVelocity>k__BackingField: 14
   <GlideMaxVelocity>k__BackingField: 2.25

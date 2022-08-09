@@ -25,6 +25,16 @@ namespace Tortoise.HOPPER
             _Player.SetAnimationBool(_Player.AnimationData.FallingParamHash, false);
         }
 
+        public override void LogicUpdate()
+        {
+            base.LogicUpdate();
+
+            if (IsThereGroundUnderneath())
+            {
+                EnterTrigger(null);
+            }
+        }
+
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
