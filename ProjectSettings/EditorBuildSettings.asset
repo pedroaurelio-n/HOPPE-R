@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Sandbox/PedroA/Scenes/ControllerTest.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Sandbox/PedroA/Scenes/TestScene.unity
+    guid: c00cd29b5a52eab4cb0beea52eb5f52c
   m_configObjects: {}

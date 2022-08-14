@@ -6,16 +6,16 @@ namespace Tortoise.HOPPER
 {
     public class PlayerGroundCheck : MonoBehaviour
     {
-        [SerializeField] private Player Player;
+        [SerializeField] private Player player;
 
         private void OnTriggerEnter(Collider other)
         {
-            Player.EnterTrigger(other);
+            player.EnterTrigger(other);
         }
 
         private void OnTriggerExit(Collider other)
         {
-            Player.ExitTrigger(other);            
+            player.ExitTrigger(other);
         }
     }
 }
