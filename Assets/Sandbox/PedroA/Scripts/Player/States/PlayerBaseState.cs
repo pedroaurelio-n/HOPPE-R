@@ -196,6 +196,12 @@ namespace Tortoise.HOPPER
         {
             var colliders = Physics.OverlapSphere(_Player.transform.position + _Player.Data.GroundOverlapOffset, _Player.Data.GroundOverlapRadius,
                                                 _Player.Data.GroundLayer, QueryTriggerInteraction.Ignore);
+            
+            if (colliders.Length > 0)
+            {
+                var layer = colliders[0].gameObject.layer;
+                _StateMachine.IsOnStairs = (1 << layer & _Player.Data.StairLayer) != 0;
+            }
 
             return colliders.Length > 0;
         }

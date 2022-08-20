@@ -114,6 +114,17 @@ namespace Tortoise.HOPPER
                         ResetVelocityY();
                     }
                 }
+
+                if (IsMovingDown())
+                {
+                    ResetVelocityY();
+                }
+
+                if (_StateMachine.IsOnStairs && IsMovingUp(0f))
+                {
+                    ResetVelocityY();
+                    jumpDirection *= 1.3f;
+                }
             }
 
             _Player.Rigidbody.AddForce(jumpDirection * _StateMachine.JumpForce, ForceMode.VelocityChange);

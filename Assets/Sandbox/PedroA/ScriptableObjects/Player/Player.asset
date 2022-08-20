@@ -101,9 +101,12 @@ MonoBehaviour:
   <SlideOffForce>k__BackingField: 25
   <GroundLayer>k__BackingField:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 640
+  <StairLayer>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 512
   <GroundOverlapOffset>k__BackingField: {x: 0, y: 0, z: 0}
-  <GroundOverlapRadius>k__BackingField: 0.22
+  <GroundOverlapRadius>k__BackingField: 0.1
   <GroundToFallRayDistance>k__BackingField: 1.3
   <JumpHeight>k__BackingField: 3
   <AdditionalJumps>k__BackingField: 1

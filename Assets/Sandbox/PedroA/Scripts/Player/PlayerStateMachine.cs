@@ -12,6 +12,7 @@ namespace Tortoise.HOPPER
         public float SpeedModifier { get; set; }
         public float SlopeSpeedModifier { get; set; }
         public int AdditionalJumps { get; set; }
+        public bool IsOnStairs { get; set; }
 
         public Player Player { get; }
 

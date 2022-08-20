@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Tortoise.HOPPER
 {
-    [CreateAssetMenu(fileName = "New Player", menuName = "Customs/Characters/Player")]
+    [CreateAssetMenu(fileName = "New Player", menuName = "Characters/Player")]
     public class PlayerSO : ScriptableObject
     {
         [field: Header("Speeds Params")]
@@ -23,6 +23,7 @@ namespace Tortoise.HOPPER
 
         [field: Header("Ground Checks Params")]
         [field: SerializeField] public LayerMask GroundLayer { get; private set; }
+        [field: SerializeField] public LayerMask StairLayer { get; private set; }
         [field: SerializeField] public Vector3 GroundOverlapOffset { get; private set; }
         [field: SerializeField] public float GroundOverlapRadius { get; private set; }
         [field: SerializeField] public float GroundToFallRayDistance { get; private set; }
