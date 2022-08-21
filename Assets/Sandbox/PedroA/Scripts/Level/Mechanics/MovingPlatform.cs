@@ -6,24 +6,22 @@ using DG.Tweening;
 namespace Tortoise.HOPPER
 {
     public class MovingPlatform : MonoBehaviour
-    {
-        public Rigidbody Rigidbody { get; private set; }
-        
+    {        
         [SerializeField] private List<Transform> movePoints;
+        [SerializeField] private bool activeOnStart;
         [SerializeField] private float moveDuration;
         [SerializeField] private Ease ease;
         [SerializeField] private float waitTime;
 
         private Coroutine _moveCoroutine;
         private int _currentIndex;
-
-        private void Awake()
-        {
-            Rigidbody = GetComponent<Rigidbody>();
-        }
+        private bool _isActive;
+        private bool _isMoving;
 
         private void Start()
         {
+            _isActive = activeOnStart;
+
             foreach (Transform point in movePoints)
             {
                 point.parent = null;
@@ -36,28 +34,35 @@ namespace Tortoise.HOPPER
         {
             yield return new WaitForSeconds(waitTime);
 
+            _isMoving = true;
             transform.DOMove(movePoints[_currentIndex].position, moveDuration).SetUpdate(UpdateType.Fixed).SetEase(ease).OnComplete(() => ChangePoint());
-
-            // var moveDirection = movePoints[_currentIndex].position - transform.position;
-            // moveDirection.Normalize();
-
-            // Rigidbody.velocity = moveDirection * moveVelocity;
         }
 
         private void ChangePoint()
         {
+            _isMoving = false;
             _currentIndex++;
 
             if (_currentIndex >= movePoints.Count)
                 _currentIndex = 0;
-            
+
+            if (_isActive)
+                Move();   
+        }
+
+        public void Move()
+        {
+            if (_isMoving)
+                return;
+                
             _moveCoroutine = StartCoroutine(MoveCoroutine());
         }
 
-        /// <summary>
-        /// OnTriggerEnter is called when the Collider other enters the trigger.
-        /// </summary>
-        /// <param name="other">The other Collider involved in this collision.</param>
+        public void KeepActive(bool value)
+        {
+            _isActive = value;
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.TryGetComponent<Player>(out Player player))
@@ -66,10 +71,6 @@ namespace Tortoise.HOPPER
             }
         }
 
-        /// <summary>
-        /// OnTriggerExit is called when the Collider other has stopped touching the trigger.
-        /// </summary>
-        /// <param name="other">The other Collider involved in this collision.</param>
         private void OnTriggerExit(Collider other)
         {
             if (other.TryGetComponent<Player>(out Player player))

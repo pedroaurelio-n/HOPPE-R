@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 1687960058287847505}
   - component: {fileID: 1687960058287847517}
   - component: {fileID: 1687960058287847518}
+  - component: {fileID: 5106369306041465921}
   - component: {fileID: 1687960058287847504}
   - component: {fileID: 1687960058287847507}
   - component: {fileID: 1687960058287847506}
@@ -171,6 +172,18 @@ MonoBehaviour:
   stepHeightPercentage: 0.25
   <FloatRayDistance>k__BackingField: 2
   <StepReachForce>k__BackingField: 25
+--- !u!114 &5106369306041465921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687960058287847508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd587477836f81d418bffca02474779e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1687960058287847504
 MonoBehaviour:
   m_ObjectHideFlags: 0

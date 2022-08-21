@@ -105,14 +105,14 @@ MonoBehaviour:
   <StairLayer>k__BackingField:
     serializedVersion: 2
     m_Bits: 512
-  <GroundOverlapOffset>k__BackingField: {x: 0, y: 0, z: 0}
-  <GroundOverlapRadius>k__BackingField: 0.1
-  <GroundToFallRayDistance>k__BackingField: 1.3
+  <GroundOverlapOffset>k__BackingField: {x: 0, y: -0.01, z: 0}
+  <GroundOverlapRadius>k__BackingField: 0.09
+  <GroundToFallRayDistance>k__BackingField: 1.4
   <JumpHeight>k__BackingField: 3
   <AdditionalJumps>k__BackingField: 1
   <JumpAngleRayDistance>k__BackingField: 1.3
   <UpJumpMaxSlopeValue>k__BackingField: 0.8
   <FallMultiplier>k__BackingField: 2.5
   <LowJumpMultiplier>k__BackingField: 2.1
-  <FallMaxVelocity>k__BackingField: 14
+  <FallMaxVelocity>k__BackingField: 15
   <GlideMaxVelocity>k__BackingField: 2.25

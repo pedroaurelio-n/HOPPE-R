@@ -8,6 +8,9 @@ namespace Tortoise.HOPPER
     [RequireComponent(typeof(PlayerInputHandler))]
     public class Player : MonoBehaviour
     {
+        public delegate void InteractInput();
+        public static event InteractInput onInteractInput;
+
         [field: SerializeField] public PlayerSO Data { get; private set; }
         [field: SerializeField] public PlayerAnimationData AnimationData { get; private set; }
         [field: SerializeField] public Transform InputSpace { get; private set; }
@@ -40,6 +43,9 @@ namespace Tortoise.HOPPER
         {
             _stateMachine.HandleInput();
             _stateMachine.LogicUpdate();
+
+            if (Input.PlayerActions.Interact.WasPressedThisFrame())
+                onInteractInput?.Invoke();
         }
 
         private void FixedUpdate()

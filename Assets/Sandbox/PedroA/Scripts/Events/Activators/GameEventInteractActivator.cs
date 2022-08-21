@@ -7,32 +7,34 @@ namespace Tortoise.HOPPER
 {
     public class GameEventInteractActivator : GameEventBaseActivator
     {
+        [SerializeField] private bool disableTriggersAfterUsage;
         [SerializeField] private UnityEvent onEnter;
         [SerializeField] private UnityEvent onExit;
-        [SerializeField] private bool disableAfterUsage;
 
+        private bool _isPlayerInside;
         private bool _disabled = false;
-
-        private Player _player;
 
         private void OnTriggerEnter(Collider other)
         {
             if (!_disabled)
             {
-                _player = other.GetComponent<Player>();
+                _isPlayerInside = true;
                 onEnter?.Invoke();
             }
         }
 
-        private void OnTriggerStay(Collider other)
+        private void Interact()
         {
-            if (!_disabled && _player.Input.PlayerActions.Interact.IsPressed())
+            if (!_disabled && _isPlayerInside)
             {
                 Raise();
 
-                if (disableAfterUsage)
+                if (!_wasSuccesful)
+                    return;
+
+                if (disableTriggersAfterUsage)
                 {
-                    OnTriggerExit(other);
+                    DisableEvent();
                     _disabled = true;
                 }
             }
@@ -40,11 +42,26 @@ namespace Tortoise.HOPPER
 
         private void OnTriggerExit(Collider other)
         {
+            DisableEvent();
+        }
+
+        private void DisableEvent()
+        {
             if (!_disabled)
             {
                 onExit?.Invoke();
-                _player = null;
+                _isPlayerInside = false;
             }
+        }
+
+        private void OnEnable()
+        {
+            Player.onInteractInput += Interact;
+        }
+
+        private void OnDisable()
+        {
+            Player.onInteractInput -= Interact;            
         }
     }
 }
