@@ -15,14 +15,14 @@ namespace Tortoise.HOPPER
         {
             base.Enter();
 
-            _Player.SetAnimationBool(_Player.AnimationData.FallingParamHash, true);
+            _Player.AnimationHelper.SetAnimationBool(_Player.AnimationData.FallingParamHash, true);
         }
 
         public override void Exit()
         {
             base.Exit();
             
-            _Player.SetAnimationBool(_Player.AnimationData.FallingParamHash, false);
+            _Player.AnimationHelper.SetAnimationBool(_Player.AnimationData.FallingParamHash, false);
         }
 
         public override void LogicUpdate()

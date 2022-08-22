@@ -16,7 +16,7 @@ namespace Tortoise.HOPPER
         {
             base.Enter();
 
-            _Player.SetAnimationBool(_Player.AnimationData.SprintingParamHash, true);
+            _Player.AnimationHelper.SetAnimationBool(_Player.AnimationData.SprintingParamHash, true);
 
             _StateMachine.SpeedModifier = _Player.Data.SprintSpeedModifier;
         }
@@ -53,6 +53,11 @@ namespace Tortoise.HOPPER
         private void OnSprintCanceled(InputAction.CallbackContext ctx)
         {
             _StateMachine.ChangeState(_StateMachine.LocomotionState);
+        }
+
+        protected override void OnAttackPerformed(InputAction.CallbackContext ctx)
+        {
+            _StateMachine.ChangeState(_StateMachine.Attack1State);
         }
         #endregion
     }

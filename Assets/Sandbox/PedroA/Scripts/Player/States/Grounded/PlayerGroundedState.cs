@@ -16,8 +16,8 @@ namespace Tortoise.HOPPER
         {
             base.Enter();
 
-            _Player.SetAnimationBool(_Player.AnimationData.AirborneParamHash, false);
-            _Player.SetAnimationBool(_Player.AnimationData.GroundedParamHash, true);
+            _Player.AnimationHelper.SetAnimationBool(_Player.AnimationData.AirborneParamHash, false);
+            _Player.AnimationHelper.SetAnimationBool(_Player.AnimationData.GroundedParamHash, true);
 
             _StateMachine.AdditionalJumps = _Player.Data.AdditionalJumps;
         }
@@ -90,6 +90,22 @@ namespace Tortoise.HOPPER
         }
         #endregion
 
+        #region ReusableMethods
+        protected override void AddInputCallbacks()
+        {
+            base.AddInputCallbacks();
+
+            _Player.Input.PlayerActions.Attack.performed += OnAttackPerformed;
+        }
+
+        protected override void RemoveInputCallbacks()
+        {
+            base.RemoveInputCallbacks();
+
+            _Player.Input.PlayerActions.Attack.performed -= OnAttackPerformed;
+        }
+        #endregion
+
         #region InputMethods
         protected override void OnJumpPerformed(InputAction.CallbackContext ctx)
         {
@@ -97,6 +113,10 @@ namespace Tortoise.HOPPER
                 return;
 
             _StateMachine.ChangeState(_StateMachine.JumpState);
+        }
+
+        protected virtual void OnAttackPerformed(InputAction.CallbackContext ctx)
+        {
         }
         #endregion
     }

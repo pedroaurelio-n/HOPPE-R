@@ -17,15 +17,15 @@ namespace Tortoise.HOPPER
         {
             base.Enter();
 
-            _Player.SetAnimationBool(_Player.AnimationData.JumpingParamHash, true);
-            _Player.SetAnimationBool(_Player.AnimationData.FallingParamHash, false);
+            _Player.AnimationHelper.SetAnimationBool(_Player.AnimationData.JumpingParamHash, true);
+            _Player.AnimationHelper.SetAnimationBool(_Player.AnimationData.FallingParamHash, false);
 
             Jump();
         }
 
         public override void Exit()
         {
-            _Player.SetAnimationBool(_Player.AnimationData.JumpingParamHash, false);
+            _Player.AnimationHelper.SetAnimationBool(_Player.AnimationData.JumpingParamHash, false);
 
             base.Exit();
 
@@ -41,7 +41,7 @@ namespace Tortoise.HOPPER
             if (!_canStartFalling && IsMovingUp(0f))
             {
                 _canStartFalling = true;
-                _Player.SetAnimationBool(_Player.AnimationData.JumpingParamHash, false);
+                _Player.AnimationHelper.SetAnimationBool(_Player.AnimationData.JumpingParamHash, false);
             }
 
             if (!IsMovingUp(1f) && _canStartFalling)

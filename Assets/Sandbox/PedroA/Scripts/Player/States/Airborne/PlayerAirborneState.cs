@@ -18,8 +18,8 @@ namespace Tortoise.HOPPER
 
             _StateMachine.SlopeSpeedModifier = 1f;
             
-            _Player.SetAnimationBool(_Player.AnimationData.GroundedParamHash, false);
-            _Player.SetAnimationBool(_Player.AnimationData.AirborneParamHash, true);
+            _Player.AnimationHelper.SetAnimationBool(_Player.AnimationData.GroundedParamHash, false);
+            _Player.AnimationHelper.SetAnimationBool(_Player.AnimationData.AirborneParamHash, true);
         }
         
         public override void LogicUpdate()

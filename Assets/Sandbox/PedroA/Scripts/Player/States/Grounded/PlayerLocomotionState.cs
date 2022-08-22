@@ -16,7 +16,7 @@ namespace Tortoise.HOPPER
         {
             base.Enter();
 
-            _Player.SetAnimationBool(_Player.AnimationData.SprintingParamHash, false);
+            _Player.AnimationHelper.SetAnimationBool(_Player.AnimationData.SprintingParamHash, false);
 
             _StateMachine.SpeedModifier = 1f;
         }
@@ -25,7 +25,7 @@ namespace Tortoise.HOPPER
         {
             base.LogicUpdate();
 
-            _Player.SetAnimationFloat(_Player.AnimationData.SpeedParamHash, _StateMachine.MoveAmount);
+            _Player.AnimationHelper.SetAnimationFloat(_Player.AnimationData.SpeedParamHash, _StateMachine.MoveAmount);
 
             if (_StateMachine.MovementInput == Vector2.zero)
                 return;
@@ -35,6 +35,13 @@ namespace Tortoise.HOPPER
                 _StateMachine.ChangeState(_StateMachine.SprintState);
                 return;
             }
+        }
+        #endregion
+
+        #region InputMethods
+        protected override void OnAttackPerformed(InputAction.CallbackContext ctx)
+        {
+            _StateMachine.ChangeState(_StateMachine.Attack1State);
         }
         #endregion
     }
