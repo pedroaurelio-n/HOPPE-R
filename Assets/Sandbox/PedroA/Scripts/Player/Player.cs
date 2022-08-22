@@ -18,16 +18,16 @@ namespace Tortoise.HOPPER
         public Rigidbody Rigidbody { get; private set; }
         public PlayerInputHandler Input { get; private set; }
         public FloatingCapsule FloatingCapsule { get; private set; }
+        public PlayerAnimationHelper AnimationHelper { get; private set; }
 
-        private Animator _animator;
         private PlayerStateMachine _stateMachine;
 
         private void Awake()
         {
             Rigidbody = GetComponent<Rigidbody>();
-            _animator = GetComponentInChildren<Animator>();
             Input = GetComponent<PlayerInputHandler>();
             FloatingCapsule = GetComponent<FloatingCapsule>();
+            AnimationHelper = GetComponentInChildren<PlayerAnimationHelper>();
 
             _stateMachine = new PlayerStateMachine(this);
 
@@ -63,20 +63,25 @@ namespace Tortoise.HOPPER
             _stateMachine.ExitTrigger(collider);
         }
 
+        public void OnAnimationEnterEvent()
+        {
+            _stateMachine.AnimationEnterEvent();
+        }
+
+        public void OnAnimationExitEvent()
+        {
+            _stateMachine.AnimationExitEvent();
+        }
+
+        public void OnAnimationTransitionEvent()
+        {
+            _stateMachine.AnimationTransitionEvent();
+        }
+
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position + Data.GroundOverlapOffset, Data.GroundOverlapRadius);
-        }
-
-        public void SetAnimationBool(int paramHash, bool value)
-        {
-            _animator.SetBool(paramHash, value);
-        }
-
-        public void SetAnimationFloat(int paramHash, float value)
-        {
-            _animator.SetFloat(paramHash, value);
         }
     }
 }

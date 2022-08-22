@@ -39,5 +39,20 @@ namespace Tortoise.HOPPER
         {
             CurrentState?.ExitTrigger(collider);
         }
+
+        public void AnimationEnterEvent()
+        {
+            CurrentState?.AnimationEnterEvent();
+        }
+
+        public void AnimationExitEvent()
+        {
+            CurrentState?.AnimationExitEvent();
+        }
+
+        public void AnimationTransitionEvent()
+        {
+            CurrentState?.AnimationTransitionEvent();
+        }
     }
 }

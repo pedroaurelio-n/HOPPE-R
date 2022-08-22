@@ -22,6 +22,10 @@ namespace Tortoise.HOPPER
         public PlayerGlideState GlideState { get; }
         public PlayerSprintState SprintState { get; }
 
+        public PlayerAttack1State Attack1State { get; }
+        public PlayerAttack2State Attack2State { get; }
+        public PlayerAttack3State Attack3State { get; }
+
         public PlayerStateMachine(Player player)
         {
             Player = player;
@@ -31,6 +35,10 @@ namespace Tortoise.HOPPER
             FallState = new PlayerFallState(this);
             GlideState = new PlayerGlideState(this);
             SprintState = new PlayerSprintState(this);
+
+            Attack1State = new PlayerAttack1State(this);
+            Attack2State = new PlayerAttack2State(this);
+            Attack3State = new PlayerAttack3State(this);
 
             var height = Player.Data.JumpHeight - 1f;
             JumpForce = Mathf.Sqrt(-2f * height * Physics.gravity.y);
