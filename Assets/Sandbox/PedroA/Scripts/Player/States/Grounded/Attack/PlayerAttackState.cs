@@ -27,13 +27,6 @@ namespace Tortoise.HOPPER
             _Player.AnimationHelper.SetRootMotion(true);
         }
 
-        public override void LogicUpdate()
-        {
-            base.LogicUpdate();
-
-            Debug.Log(_Player.AnimationHelper.Animator.rootPosition);
-        }
-
         public override void Exit()
         {
             base.Exit();
