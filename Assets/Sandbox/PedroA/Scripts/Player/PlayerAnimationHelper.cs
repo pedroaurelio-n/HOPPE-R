@@ -13,6 +13,11 @@ namespace Tortoise.HOPPER
         {
             Animator = GetComponent<Animator>();
         }
+        
+        private void OnAnimatorMove()
+        {
+            player.transform.position += Animator.deltaPosition;
+        }
 
         public void SetRootMotion(bool value)
         {

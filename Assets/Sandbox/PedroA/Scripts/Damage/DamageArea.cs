@@ -44,7 +44,6 @@ namespace Tortoise.HOPPER
         {
             if (other.TryGetComponent<Damageable>(out Damageable damageable))
             {
-                Debug.Log($"Test");
                 if (!_isDisabled)
                     _damageCoroutine = StartCoroutine(DamageCoroutine(damageable));
             }
