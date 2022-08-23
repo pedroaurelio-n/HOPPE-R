@@ -73,17 +73,9 @@ namespace Tortoise.HOPPER
 
         public override void EnterTrigger(Collider collider)
         {
-            base.EnterTrigger(collider);
-
             if (_canStartFalling && IsThereGroundUnderneath())
             {
-                if (_Player.Input.PlayerActions.Sprint.IsPressed())
-                {
-                    _StateMachine.ChangeState(_StateMachine.SprintState);
-                    return;
-                }
-                
-                _StateMachine.ChangeState(_StateMachine.LocomotionState);
+                base.EnterTrigger(collider);
             }
         }
         #endregion

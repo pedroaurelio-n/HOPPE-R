@@ -28,6 +28,18 @@ namespace Tortoise.HOPPER
 
             _StateMachine.SpeedModifier = Mathf.MoveTowards(_StateMachine.SpeedModifier, 1f, _Player.Data.AirCounterSprint * Time.deltaTime);
         }
+
+        public override void EnterTrigger(Collider collider)
+        {
+            base.EnterTrigger(collider);
+
+            if (_Player.Input.PlayerActions.Sprint.IsPressed())
+            {
+                _StateMachine.ChangeState(_StateMachine.SprintState);
+                return;
+            }
+            _StateMachine.ChangeState(_StateMachine.LocomotionState);
+        }
         #endregion
 
         #region InputMethods

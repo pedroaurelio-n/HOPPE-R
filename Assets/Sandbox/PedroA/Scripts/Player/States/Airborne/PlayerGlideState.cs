@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 namespace Tortoise.HOPPER
 {
-    public class PlayerGlideState : PlayerBaseState
+    public class PlayerGlideState : PlayerAirborneState
     {
         public PlayerGlideState(PlayerStateMachine stateMachine) : base(stateMachine)
         {
@@ -34,13 +34,6 @@ namespace Tortoise.HOPPER
                 DecelerateXZ(_Player.Data.AirNegAccel);
 
             LimitFallVelocity();
-        }
-
-        public override void EnterTrigger(Collider collider)
-        {
-            base.EnterTrigger(collider);
-
-            _StateMachine.ChangeState(_StateMachine.LocomotionState);
         }
         #endregion
 

@@ -46,18 +46,6 @@ namespace Tortoise.HOPPER
 
             LimitFallVelocity();
         }
-
-        public override void EnterTrigger(Collider collider)
-        {
-            base.EnterTrigger(collider);
-
-            if (_Player.Input.PlayerActions.Sprint.IsPressed())
-            {
-                _StateMachine.ChangeState(_StateMachine.SprintState);
-                return;
-            }
-            _StateMachine.ChangeState(_StateMachine.LocomotionState);
-        }
         #endregion
 
         #region MainMethods
