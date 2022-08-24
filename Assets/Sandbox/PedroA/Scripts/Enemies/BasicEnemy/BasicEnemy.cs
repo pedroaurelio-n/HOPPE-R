@@ -1,21 +1,65 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Tortoise.HOPPER
 {
     public class BasicEnemy : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
+        [field: SerializeField] public BasicEnemySO Data { get; private set; }
+        [field: SerializeField] public BoxCollider MoveArea { get; private set; }
+
+        public NavMeshAgent Agent { get; private set; }
+
+        private BasicEnemyStateMachine _stateMachine;
+
+        private void Awake()
         {
-        
+            Agent = GetComponent<NavMeshAgent>();
+
+            _stateMachine = new BasicEnemyStateMachine(this);
         }
 
-        // Update is called once per frame
-        void Update()
+        private void Start()
         {
-        
+            _stateMachine.ChangeState(_stateMachine.IdleState);
         }
+
+        private void Update()
+        {
+            _stateMachine.LogicUpdate();
+        }
+
+        private void FixedUpdate()
+        {
+            _stateMachine.PhysicsUpdate();
+        }
+
+        public void EnterTrigger(Collider collider)
+        {
+            _stateMachine.EnterTrigger(collider);
+        }
+
+        public void ExitTrigger(Collider collider)
+        {
+            _stateMachine.ExitTrigger(collider);
+        }
+
+        public void OnAnimationEnterEvent()
+        {
+            _stateMachine.AnimationEnterEvent();
+        }
+
+        public void OnAnimationExitEvent()
+        {
+            _stateMachine.AnimationExitEvent();
+        }
+
+        public void OnAnimationTransitionEvent()
+        {
+            _stateMachine.AnimationTransitionEvent();
+        }
+
     }
 }

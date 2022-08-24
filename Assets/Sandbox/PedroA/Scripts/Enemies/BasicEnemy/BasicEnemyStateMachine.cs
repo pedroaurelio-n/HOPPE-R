@@ -4,18 +4,19 @@ using UnityEngine;
 
 namespace Tortoise.HOPPER
 {
-    public class BasicEnemyStateMachine : MonoBehaviour
+    public class BasicEnemyStateMachine : StateMachine
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
+        public BasicEnemy BasicEnemy { get; }
 
-        // Update is called once per frame
-        void Update()
+        public BasicEnemyIdleState IdleState { get; }
+        public BasicEnemyWanderState WanderState { get; }
+
+        public BasicEnemyStateMachine(BasicEnemy basicEnemy)
         {
-        
+            BasicEnemy = basicEnemy;
+
+            IdleState = new BasicEnemyIdleState(this);
+            WanderState = new BasicEnemyWanderState(this);
         }
     }
 }
