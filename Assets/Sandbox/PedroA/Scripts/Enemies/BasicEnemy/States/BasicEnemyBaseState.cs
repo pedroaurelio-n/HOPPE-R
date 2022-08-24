@@ -18,6 +18,7 @@ namespace Tortoise.HOPPER
         #region IStateMethods
         public virtual void Enter()
         {
+            Debug.Log(_StateMachine.CurrentState);
         }
 
         public virtual void Exit()
@@ -54,6 +55,17 @@ namespace Tortoise.HOPPER
 
         public virtual void AnimationTransitionEvent()
         {
+        }
+        #endregion
+
+        #region ReusableMethods
+        protected virtual void CheckForFollowTarget()
+        {
+            if (_BasicEnemy.Target == null || _StateMachine.StopFollow)
+                return;
+            
+            if (Vector3.Distance(_BasicEnemy.transform.position, _BasicEnemy.Target.position) < _BasicEnemy.Data.MinDistanceToFollow)
+                _StateMachine.ChangeState(_StateMachine.FollowState);
         }
         #endregion
     }

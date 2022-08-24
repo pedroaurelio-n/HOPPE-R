@@ -9,6 +9,7 @@ namespace Tortoise.HOPPER
     {
         [field: SerializeField] public BasicEnemySO Data { get; private set; }
         [field: SerializeField] public BoxCollider MoveArea { get; private set; }
+        [field: SerializeField] public Transform Target { get; private set; }
 
         public NavMeshAgent Agent { get; private set; }
 

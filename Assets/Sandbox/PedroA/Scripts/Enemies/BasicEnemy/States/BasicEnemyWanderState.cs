@@ -16,6 +16,7 @@ namespace Tortoise.HOPPER
             base.Enter();
 
             _BasicEnemy.Agent.isStopped = false;
+            _StateMachine.StopFollow = false;
 
             var areaExtents = _BasicEnemy.MoveArea.size * 0.5f;
             var randomPoint = new Vector3(
@@ -33,9 +34,12 @@ namespace Tortoise.HOPPER
         {
             base.LogicUpdate();
 
-            if (_BasicEnemy.Agent.remainingDistance < 0.5f)
+            CheckForFollowTarget();
+
+            if (_BasicEnemy.Agent.remainingDistance < _BasicEnemy.Data.MinPointDistance)
             {
                 _StateMachine.ChangeState(_StateMachine.IdleState);
+                return;
             }
         }
         #endregion

@@ -27,11 +27,14 @@ namespace Tortoise.HOPPER
         {
             base.LogicUpdate();
 
+            CheckForFollowTarget();
+
             _elapsedTime += Time.deltaTime;
 
             if (_elapsedTime >= _BasicEnemy.Data.IdleDuration)
             {
                 _StateMachine.ChangeState(_StateMachine.WanderState);
+                return;
             }
         }
         #endregion
