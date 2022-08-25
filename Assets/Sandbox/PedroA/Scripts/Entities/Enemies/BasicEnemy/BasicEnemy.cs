@@ -31,7 +31,7 @@ namespace Tortoise.HOPPER
 
         private void Start()
         {
-            Agent.speed = Data.Speed;
+            Agent.speed = Data.MoveSpeed;
             Agent.angularSpeed = Data.RotationSpeed;
             Agent.acceleration = Data.Acceleration;
             Agent.stoppingDistance = Data.StoppingDistance;

@@ -31,6 +31,8 @@ namespace Tortoise.HOPPER
 
         public virtual void LogicUpdate()
         {
+            if (_StateMachine.CurrentCooldown >= 0)
+                _StateMachine.CurrentCooldown -= Time.deltaTime;
         }
 
         public virtual void PhysicsUpdate()
@@ -59,13 +61,17 @@ namespace Tortoise.HOPPER
         #endregion
 
         #region ReusableMethods
-        protected virtual void CheckForFollowTarget()
+        protected bool CanFollowTarget()
         {
             if (_BasicEnemy.Target == null || _StateMachine.StopFollow)
-                return;
+                return false;
             
-            if (Vector3.Distance(_BasicEnemy.transform.position, _BasicEnemy.Target.position) < _BasicEnemy.Data.MinDistanceToFollow)
-                _StateMachine.ChangeState(_StateMachine.FollowState);
+            return Vector3.Distance(_BasicEnemy.transform.position, _BasicEnemy.Target.position) < _BasicEnemy.Data.MinDistanceToFollow;
+        }
+
+        protected bool CanAttack()
+        {
+            return Vector3.Distance(_BasicEnemy.transform.position, _BasicEnemy.Target.position) <= _BasicEnemy.Data.AttackRange;
         }
         #endregion
     }

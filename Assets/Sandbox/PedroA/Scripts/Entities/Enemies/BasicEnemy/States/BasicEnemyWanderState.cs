@@ -36,7 +36,11 @@ namespace Tortoise.HOPPER
         {
             base.LogicUpdate();
 
-            CheckForFollowTarget();
+            if (CanFollowTarget())
+            {
+                _StateMachine.ChangeState(_StateMachine.FollowState);
+                return;
+            }
 
             if (_BasicEnemy.Agent.remainingDistance < _BasicEnemy.Data.MinPointDistance)
             {

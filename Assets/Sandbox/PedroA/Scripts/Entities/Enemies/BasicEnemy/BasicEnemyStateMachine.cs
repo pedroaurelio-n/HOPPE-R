@@ -9,10 +9,12 @@ namespace Tortoise.HOPPER
         public BasicEnemy BasicEnemy { get; }
 
         public bool StopFollow { get; set; }
+        public float CurrentCooldown { get; set; }
 
         public BasicEnemyIdleState IdleState { get; }
         public BasicEnemyWanderState WanderState { get; }
         public BasicEnemyFollowState FollowState { get; }
+        public BasicEnemyAttackState AttackState { get; }
 
         public BasicEnemyStateMachine(BasicEnemy basicEnemy)
         {
@@ -21,6 +23,7 @@ namespace Tortoise.HOPPER
             IdleState = new BasicEnemyIdleState(this);
             WanderState = new BasicEnemyWanderState(this);
             FollowState = new BasicEnemyFollowState(this);
+            AttackState = new BasicEnemyAttackState(this);
         }
     }
 }

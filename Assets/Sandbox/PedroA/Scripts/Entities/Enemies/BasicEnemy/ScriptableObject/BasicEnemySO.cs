@@ -8,7 +8,7 @@ namespace Tortoise.HOPPER
     public class BasicEnemySO : ScriptableObject
     {
         [field: Header("Agent Params")]
-        [field: SerializeField] public float Speed { get; private set; }
+        [field: SerializeField] public float MoveSpeed { get; private set; }
         [field: SerializeField] public float RotationSpeed { get; private set; }
         [field: SerializeField] public float Acceleration { get; private set; }
         [field: SerializeField] public float StoppingDistance { get; private set; }
@@ -24,5 +24,11 @@ namespace Tortoise.HOPPER
         [field: SerializeField] public float MaxDistanceFromTarget { get; private set; }
         [field: SerializeField] public float MaxDistanceFromArea { get; private set; }
         [field: SerializeField] public float MaxYDifference { get; private set; }
+
+        [field: Header("Attack Params")]
+        [field: SerializeField] public float AttackRange { get; private set; }
+        [field: SerializeField] public float AttackCooldown { get; private set; }
+        [field: SerializeField] public float AttackMoveSpeed { get; private set; }
+        [field: SerializeField] public float AttackRotationSpeed { get; private set; }
     }
 }

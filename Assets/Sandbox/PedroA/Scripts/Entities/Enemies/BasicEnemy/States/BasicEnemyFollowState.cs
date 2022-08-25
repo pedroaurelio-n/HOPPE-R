@@ -15,6 +15,9 @@ namespace Tortoise.HOPPER
         {
             base.Enter();
 
+            _BasicEnemy.Agent.speed = _BasicEnemy.Data.MoveSpeed;
+            _BasicEnemy.Agent.angularSpeed = _BasicEnemy.Data.RotationSpeed;
+
             _BasicEnemy.AnimationHelper.SetAnimationBool(_BasicEnemy.AnimationData.MovingParamHash, true);
 
             _BasicEnemy.Agent.isStopped = false;
@@ -32,6 +35,12 @@ namespace Tortoise.HOPPER
             {
                 _StateMachine.StopFollow = true;
                 _StateMachine.ChangeState(_StateMachine.IdleState);
+                return;
+            }
+
+            if (CanAttack())
+            {
+                _StateMachine.ChangeState(_StateMachine.AttackState);
                 return;
             }
         }

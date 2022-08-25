@@ -12,13 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38ae78b8833939743b993d4c2e14266e, type: 3}
   m_Name: BasicEnemy
   m_EditorClassIdentifier: 
-  <Speed>k__BackingField: 2
+  <MoveSpeed>k__BackingField: 2
   <RotationSpeed>k__BackingField: 600
   <Acceleration>k__BackingField: 4
   <StoppingDistance>k__BackingField: 0
   <IdleDuration>k__BackingField: 2
   <MinPointDistance>k__BackingField: 0.5
-  <MinDistanceToFollow>k__BackingField: 4
+  <MinDistanceToFollow>k__BackingField: 5
   <MaxDistanceFromTarget>k__BackingField: 30
   <MaxDistanceFromArea>k__BackingField: 8
   <MaxYDifference>k__BackingField: 3.5
+  <AttackRange>k__BackingField: 2
+  <AttackCooldown>k__BackingField: 2
+  <AttackMoveSpeed>k__BackingField: 0.25
+  <AttackRotationSpeed>k__BackingField: 5
