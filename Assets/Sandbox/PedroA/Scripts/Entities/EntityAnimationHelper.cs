@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Tortoise.HOPPER
 {
-    public class PlayerAnimationHelper : MonoBehaviour
+    public class EntityAnimationHelper : MonoBehaviour
     {
         public Animator Animator { get; private set; }
-        [SerializeField] private Player player;
+        [SerializeField] private Entity entity;
 
         private void Awake()
         {
@@ -16,7 +16,7 @@ namespace Tortoise.HOPPER
         
         private void OnAnimatorMove()
         {
-            player.transform.position += Animator.deltaPosition;
+            entity.transform.position += Animator.deltaPosition;
         }
 
         public void SetRootMotion(bool value)
@@ -44,7 +44,7 @@ namespace Tortoise.HOPPER
             if (IsInAnimationTransition())
                 return;
 
-            player.OnAnimationEnterEvent();
+            entity.OnAnimationEnterEvent();
         }
 
         public void TriggerAnimationExitEvent()
@@ -54,12 +54,12 @@ namespace Tortoise.HOPPER
                 return;
             }
                 
-            player.OnAnimationExitEvent();
+            entity.OnAnimationExitEvent();
         }
 
         public void TriggerAnimationTransitionEvent()
         {
-            player.OnAnimationTransitionEvent();
+            entity.OnAnimationTransitionEvent();
         }
 
         private bool IsInAnimationTransition(int layerIndex = 0)

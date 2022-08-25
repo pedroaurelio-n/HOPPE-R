@@ -6,7 +6,7 @@ namespace Tortoise.HOPPER
 {
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(PlayerInputHandler))]
-    public class Player : MonoBehaviour
+    public class Player : Entity
     {
         public delegate void InteractInput();
         public static event InteractInput onInteractInput;
@@ -18,64 +18,35 @@ namespace Tortoise.HOPPER
         public Rigidbody Rigidbody { get; private set; }
         public PlayerInputHandler Input { get; private set; }
         public FloatingCapsule FloatingCapsule { get; private set; }
-        public PlayerAnimationHelper AnimationHelper { get; private set; }
 
-        private PlayerStateMachine _stateMachine;
+        private PlayerStateMachine _playerStateMachine;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+            
             Rigidbody = GetComponent<Rigidbody>();
             Input = GetComponent<PlayerInputHandler>();
             FloatingCapsule = GetComponent<FloatingCapsule>();
-            AnimationHelper = GetComponentInChildren<PlayerAnimationHelper>();
 
-            _stateMachine = new PlayerStateMachine(this);
+            _playerStateMachine = new PlayerStateMachine(this);
+            _stateMachine = _playerStateMachine;
 
             AnimationData.Initialize();
         }
 
         private void Start()
         {
-            _stateMachine.ChangeState(_stateMachine.LocomotionState);
+            _playerStateMachine.ChangeState(_playerStateMachine.LocomotionState);
         }
 
-        private void Update()
+        protected override void Update()
         {
-            _stateMachine.HandleInput();
-            _stateMachine.LogicUpdate();
+            _playerStateMachine.HandleInput();
+            _playerStateMachine.LogicUpdate();
 
             if (Input.PlayerActions.Interact.WasPressedThisFrame())
                 onInteractInput?.Invoke();
-        }
-
-        private void FixedUpdate()
-        {
-            _stateMachine.PhysicsUpdate();
-        }
-
-        public void EnterTrigger(Collider collider)
-        {
-            _stateMachine.EnterTrigger(collider);
-        }
-
-        public void ExitTrigger(Collider collider)
-        {
-            _stateMachine.ExitTrigger(collider);
-        }
-
-        public void OnAnimationEnterEvent()
-        {
-            _stateMachine.AnimationEnterEvent();
-        }
-
-        public void OnAnimationExitEvent()
-        {
-            _stateMachine.AnimationExitEvent();
-        }
-
-        public void OnAnimationTransitionEvent()
-        {
-            _stateMachine.AnimationTransitionEvent();
         }
 
         private void OnDrawGizmosSelected()

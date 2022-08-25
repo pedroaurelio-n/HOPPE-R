@@ -4337,10 +4337,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 164298142}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d345361b943be6e43b7db718d90f2374, type: 3}
+  m_Script: {fileID: 11500000, guid: a394c2a1cf896ba46bc0290ff2084e30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basicEnemy: {fileID: 768126198}
+  entity: {fileID: 768126198}
 --- !u!1 &177341152
 GameObject:
   m_ObjectHideFlags: 0

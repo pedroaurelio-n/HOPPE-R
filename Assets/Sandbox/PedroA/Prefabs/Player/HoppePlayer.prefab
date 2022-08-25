@@ -1352,7 +1352,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2706112702079788112}
   - component: {fileID: 2706112702079788114}
-  - component: {fileID: 2706112702079788115}
+  - component: {fileID: 5279160560557222713}
   m_Layer: 6
   m_Name: HoppeMesh
   m_TagString: Untagged
@@ -1403,7 +1403,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2706112702079788115
+--- !u!114 &5279160560557222713
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1412,10 +1412,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2706112702079788113}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be7fee7ebe3e16940a632ead4688c82c, type: 3}
+  m_Script: {fileID: 11500000, guid: a394c2a1cf896ba46bc0290ff2084e30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 8450607078733179691}
+  entity: {fileID: 8450607078733179691}
 --- !u!1 &2706112702107466918
 GameObject:
   m_ObjectHideFlags: 0
