@@ -17,6 +17,9 @@ namespace Tortoise.HOPPER
         {
             base.Enter();
 
+            _BasicEnemy.AnimationHelper.SetAnimationBool(_BasicEnemy.AnimationData.ActiveParamHash, true);
+            _BasicEnemy.AnimationHelper.SetAnimationBool(_BasicEnemy.AnimationData.MovingParamHash, false);
+
             _elapsedTime = 0f;
 
             _BasicEnemy.Agent.SetDestination(_BasicEnemy.transform.position);
@@ -28,6 +31,9 @@ namespace Tortoise.HOPPER
             base.LogicUpdate();
 
             CheckForFollowTarget();
+
+            if (_BasicEnemy.MoveArea == null)
+                return;
 
             _elapsedTime += Time.deltaTime;
 

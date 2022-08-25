@@ -9,9 +9,14 @@ namespace Tortoise.HOPPER
         public delegate void ObjectDisabled(WaveObject waveObject);
         public static event ObjectDisabled onObjectDisabled;
 
-        private void OnDisable()
+        public void DisableObject()
         {
             onObjectDisabled?.Invoke(this);
+        }
+
+        private void OnDisable()
+        {
+            DisableObject();
         }
     }
 }

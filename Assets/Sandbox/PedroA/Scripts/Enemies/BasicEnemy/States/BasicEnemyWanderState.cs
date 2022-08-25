@@ -15,6 +15,8 @@ namespace Tortoise.HOPPER
         {
             base.Enter();
 
+            _BasicEnemy.AnimationHelper.SetAnimationBool(_BasicEnemy.AnimationData.MovingParamHash, true);
+
             _BasicEnemy.Agent.isStopped = false;
             _StateMachine.StopFollow = false;
 
