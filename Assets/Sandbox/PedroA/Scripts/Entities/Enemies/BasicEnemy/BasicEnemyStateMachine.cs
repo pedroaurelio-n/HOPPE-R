@@ -15,6 +15,7 @@ namespace Tortoise.HOPPER
         public BasicEnemyWanderState WanderState { get; }
         public BasicEnemyFollowState FollowState { get; }
         public BasicEnemyAttackState AttackState { get; }
+        public BasicEnemyDamageState DamageState { get; }
 
         public BasicEnemyStateMachine(BasicEnemy basicEnemy)
         {
@@ -24,6 +25,7 @@ namespace Tortoise.HOPPER
             WanderState = new BasicEnemyWanderState(this);
             FollowState = new BasicEnemyFollowState(this);
             AttackState = new BasicEnemyAttackState(this);
+            DamageState = new BasicEnemyDamageState(this);
         }
     }
 }

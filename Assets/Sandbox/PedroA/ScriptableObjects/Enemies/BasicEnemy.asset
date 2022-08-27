@@ -26,3 +26,5 @@ MonoBehaviour:
   <AttackCooldown>k__BackingField: 2
   <AttackMoveSpeed>k__BackingField: 0.25
   <AttackRotationSpeed>k__BackingField: 5
+  <DamageCooldown>k__BackingField: 1.5
+  <KnockbackForce>k__BackingField: 10

@@ -14,6 +14,7 @@ namespace Tortoise.HOPPER
         [field: SerializeField] public Transform Target { get; private set; }
 
         public NavMeshAgent Agent { get; private set; }
+        public Rigidbody Rigidbody { get; private set; }
 
         private BasicEnemyStateMachine _enemyStateMachine;
 
@@ -22,6 +23,7 @@ namespace Tortoise.HOPPER
             base.Awake();
 
             Agent = GetComponent<NavMeshAgent>();
+            Rigidbody = GetComponent<Rigidbody>();
 
             _enemyStateMachine = new BasicEnemyStateMachine(this);
             _stateMachine = _enemyStateMachine;
@@ -37,6 +39,18 @@ namespace Tortoise.HOPPER
             Agent.stoppingDistance = Data.StoppingDistance;
 
             _enemyStateMachine.ChangeState(_enemyStateMachine.IdleState);
+        }
+
+        public override void Damage()
+        {
+            if (_enemyStateMachine.CurrentState == _enemyStateMachine.DamageState)
+                return;
+
+            _enemyStateMachine.ChangeState(_enemyStateMachine.DamageState);
+        }
+
+        public override void Death()
+        {
         }
     }
 }

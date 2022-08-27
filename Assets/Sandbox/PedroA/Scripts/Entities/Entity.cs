@@ -35,6 +35,14 @@ namespace Tortoise.HOPPER
             _stateMachine.ExitTrigger(collider);
         }
 
+        public virtual void Damage()
+        {
+        }
+
+        public virtual void Death()
+        {
+        }
+
         public void OnAnimationEnterEvent()
         {
             _stateMachine.AnimationEnterEvent();

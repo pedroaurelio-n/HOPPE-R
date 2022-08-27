@@ -38,7 +38,8 @@ namespace Tortoise.HOPPER
                 return;
             }
 
-            StartInvincibility();
+            if (invincibleTime > 0f)
+                StartInvincibility();
 
             _currentHealth -= damage;
 

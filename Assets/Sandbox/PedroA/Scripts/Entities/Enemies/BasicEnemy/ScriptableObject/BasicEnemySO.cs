@@ -30,5 +30,9 @@ namespace Tortoise.HOPPER
         [field: SerializeField] public float AttackCooldown { get; private set; }
         [field: SerializeField] public float AttackMoveSpeed { get; private set; }
         [field: SerializeField] public float AttackRotationSpeed { get; private set; }
+        
+        [field: Header("Damage Params")]
+        [field: SerializeField] public float DamageCooldown { get; private set; }
+        [field: SerializeField] public float KnockbackForce { get; private set; }
     }
 }
