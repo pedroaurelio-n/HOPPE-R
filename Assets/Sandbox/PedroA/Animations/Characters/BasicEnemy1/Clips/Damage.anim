@@ -1299,44 +1299,44 @@ AnimationClip:
       - serializedVersion: 3
         time: 0
         value: {x: -0, y: 0, z: 0}
-        inSlope: {x: -0, y: 3.5825198, z: -6.8538156}
-        outSlope: {x: -0, y: 3.5825198, z: -6.8538156}
+        inSlope: {x: -0, y: 3.5825198, z: 0}
+        outSlope: {x: -0, y: 3.5825198, z: 0}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.033333335
-        value: {x: -0, y: 0.119417325, z: -0.22846052}
-        inSlope: {x: -0, y: 2.8430088, z: -6.4049625}
-        outSlope: {x: -0, y: 2.8430073, z: -6.4049597}
+        value: {x: -0, y: 0.119417325, z: 0}
+        inSlope: {x: -0, y: 2.8430088, z: 0}
+        outSlope: {x: -0, y: 2.8430073, z: 0}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.1
-        value: {x: -0, y: 0.22518814, z: -0.591637}
-        inSlope: {x: -0, y: 0.8776037, z: -4.5383167}
-        outSlope: {x: -0, y: 0.877605, z: -4.5383015}
+        value: {x: -0, y: 0.22518814, z: 0}
+        inSlope: {x: -0, y: 0.8776037, z: 0}
+        outSlope: {x: -0, y: 0.877605, z: 0}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.2
-        value: {x: -0, y: 0.27513194, z: -0.94317555}
-        inSlope: {x: -0, y: 0.28909925, z: -2.6878755}
-        outSlope: {x: -0, y: 0.28909883, z: -2.687882}
+        value: {x: -0, y: 0.27513194, z: 0}
+        inSlope: {x: -0, y: 0.28909925, z: 0}
+        outSlope: {x: -0, y: 0.28909883, z: 0}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.5
-        value: {x: -0, y: 0.2877291, z: -1.2706745}
-        inSlope: {x: -0, y: -0.0913354, z: 0.010385575}
-        outSlope: {x: -0, y: -0.0913354, z: 0.010385575}
+        value: {x: -0, y: 0.2877291, z: 0}
+        inSlope: {x: -0, y: -0.0913354, z: 0}
+        outSlope: {x: -0, y: -0.0913354, z: 0}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
@@ -9563,61 +9563,6 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: Circle001
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: -6.8538156
-        outSlope: -6.8538156
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.033333335
-        value: -0.22846052
-        inSlope: -6.4049625
-        outSlope: -6.4049597
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.1
-        value: -0.591637
-        inSlope: -4.5383167
-        outSlope: -4.5383015
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.2
-        value: -0.94317555
-        inSlope: -2.6878755
-        outSlope: -2.687882
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.5
-        value: -1.2706745
-        inSlope: 0.010385575
-        outSlope: 0.010385575
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalPosition.z
     path: Circle001
     classID: 4
     script: {fileID: 0}

@@ -8,6 +8,9 @@ namespace Tortoise.HOPPER
     {
         private void OnTriggerEnter(Collider other)
         {
+            if (!other.TryGetComponent<Player>(out Player player))
+                return;
+
             BasicItemCollection.AddItem();
             gameObject.SetActive(false);
         }

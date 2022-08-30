@@ -194,16 +194,16 @@ namespace Tortoise.HOPPER
 
         protected bool IsThereGroundUnderneath()
         {
-            var colliders = Physics.OverlapSphere(_Player.transform.position + _Player.Data.GroundOverlapOffset, _Player.Data.GroundOverlapRadius,
-                                                _Player.Data.GroundLayer, QueryTriggerInteraction.Ignore);
-            
-            if (colliders.Length > 0)
+            var collider = Physics.SphereCast(_Player.transform.position + _Player.Data.GroundCastOffset, _Player.Data.GroundCastRadius, Vector3.down,
+                                                out RaycastHit hit, _Player.Data.GroundCastDistance, _Player.Data.GroundLayer, QueryTriggerInteraction.Ignore);
+
+            if (collider)
             {
-                var layer = colliders[0].gameObject.layer;
+                var layer = hit.collider.gameObject.layer;
                 _StateMachine.IsOnStairs = (1 << layer & _Player.Data.StairLayer) != 0;
             }
 
-            return colliders.Length > 0;
+            return collider;
         }
 
         protected float SetSlopeSpeedModifierOnAngle(float angle, bool setModifier = true)

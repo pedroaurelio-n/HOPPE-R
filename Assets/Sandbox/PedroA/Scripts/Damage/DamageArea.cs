@@ -53,7 +53,8 @@ namespace Tortoise.HOPPER
         {
             if (other.TryGetComponent<Damageable>(out Damageable damageable))
             {
-                StopCoroutine(_damageCoroutine);
+                if (_damageCoroutine != null)
+                    StopCoroutine(_damageCoroutine);
 
                 if (disableAfterUsage)
                     _isDisabled = true;

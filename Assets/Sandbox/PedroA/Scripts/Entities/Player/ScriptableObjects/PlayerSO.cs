@@ -24,8 +24,9 @@ namespace Tortoise.HOPPER
         [field: Header("Ground Checks Params")]
         [field: SerializeField] public LayerMask GroundLayer { get; private set; }
         [field: SerializeField] public LayerMask StairLayer { get; private set; }
-        [field: SerializeField] public Vector3 GroundOverlapOffset { get; private set; }
-        [field: SerializeField] public float GroundOverlapRadius { get; private set; }
+        [field: SerializeField] public Vector3 GroundCastOffset { get; private set; }
+        [field: SerializeField] public float GroundCastRadius { get; private set; }
+        [field: SerializeField] public float GroundCastDistance { get; private set; }
         [field: SerializeField] public float GroundToFallRayDistance { get; private set; }
 
         [field: Header("Airborne Params")]

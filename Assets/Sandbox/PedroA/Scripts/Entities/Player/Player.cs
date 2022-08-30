@@ -49,10 +49,10 @@ namespace Tortoise.HOPPER
                 onInteractInput?.Invoke();
         }
 
-        private void OnDrawGizmosSelected()
+        private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position + Data.GroundOverlapOffset, Data.GroundOverlapRadius);
+            Gizmos.DrawWireSphere(transform.position + Data.GroundCastOffset, Data.GroundCastRadius);
         }
     }
 }

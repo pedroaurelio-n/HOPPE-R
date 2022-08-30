@@ -105,8 +105,9 @@ MonoBehaviour:
   <StairLayer>k__BackingField:
     serializedVersion: 2
     m_Bits: 512
-  <GroundOverlapOffset>k__BackingField: {x: 0, y: -0.01, z: 0}
-  <GroundOverlapRadius>k__BackingField: 0.09
+  <GroundCastOffset>k__BackingField: {x: 0, y: 0.46, z: 0}
+  <GroundCastRadius>k__BackingField: 0.1
+  <GroundCastDistance>k__BackingField: 0.41
   <GroundToFallRayDistance>k__BackingField: 1.4
   <JumpHeight>k__BackingField: 3
   <AdditionalJumps>k__BackingField: 1

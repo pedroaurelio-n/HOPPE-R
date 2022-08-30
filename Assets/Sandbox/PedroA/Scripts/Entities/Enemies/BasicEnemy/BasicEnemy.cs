@@ -51,6 +51,10 @@ namespace Tortoise.HOPPER
 
         public override void Death()
         {
+            if (_enemyStateMachine.CurrentState == _enemyStateMachine.DisabledState)
+                return;
+
+            _enemyStateMachine.ChangeState(_enemyStateMachine.DisabledState);
         }
     }
 }

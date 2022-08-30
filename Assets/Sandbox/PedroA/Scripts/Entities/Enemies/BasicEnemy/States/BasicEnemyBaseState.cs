@@ -18,7 +18,7 @@ namespace Tortoise.HOPPER
         #region IStateMethods
         public virtual void Enter()
         {
-            Debug.Log(_StateMachine.CurrentState);
+            // Debug.Log(_StateMachine.CurrentState);
         }
 
         public virtual void Exit()
@@ -71,6 +71,9 @@ namespace Tortoise.HOPPER
 
         protected bool CanAttack()
         {
+            if (_BasicEnemy.Target == null)
+                return false;
+
             return Vector3.Distance(_BasicEnemy.transform.position, _BasicEnemy.Target.position) <= _BasicEnemy.Data.AttackRange;
         }
         #endregion

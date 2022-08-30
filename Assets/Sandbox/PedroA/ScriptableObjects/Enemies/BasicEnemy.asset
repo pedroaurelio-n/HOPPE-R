@@ -18,8 +18,8 @@ MonoBehaviour:
   <StoppingDistance>k__BackingField: 0
   <IdleDuration>k__BackingField: 2
   <MinPointDistance>k__BackingField: 0.5
-  <MinDistanceToFollow>k__BackingField: 5.5
-  <MaxDistanceFromTarget>k__BackingField: 8
+  <MinDistanceToFollow>k__BackingField: 6
+  <MaxDistanceFromTarget>k__BackingField: 9
   <MaxDistanceFromArea>k__BackingField: 30
   <MaxYDifference>k__BackingField: 3.5
   <AttackRange>k__BackingField: 2
