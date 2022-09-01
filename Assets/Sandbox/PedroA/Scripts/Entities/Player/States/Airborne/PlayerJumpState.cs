@@ -49,7 +49,7 @@ namespace Tortoise.HOPPER
                 _Player.Input.PlayerActions.Move.Enable();
             }
             
-            if (!_canStartFalling || GetVerticalVelocity().y > 0)
+            if (!_canStartFalling || GetVerticalVelocity().y > 0f)
                 return;
 
             if (_Player.Input.PlayerActions.Jump.IsPressed() && _StateMachine.AdditionalJumps <= 0)
@@ -112,7 +112,7 @@ namespace Tortoise.HOPPER
                     ResetVelocityY();
                 }
 
-                if (_StateMachine.IsOnStairs && IsMovingUp(0f))
+                if (_StateMachine.IsOnStairs && IsMovingUp())
                 {
                     ResetVelocityY();
                     jumpDirection *= 1.3f;

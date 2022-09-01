@@ -21,11 +21,6 @@ namespace Tortoise.HOPPER
             _BasicEnemy.Rigidbody.isKinematic = false;
             _BasicEnemy.Agent.velocity = Vector3.zero;
 
-
-            var direction = _BasicEnemy.transform.position - _BasicEnemy.Target.position;
-            direction.y = 0f;
-            _BasicEnemy.Rigidbody.AddForce(direction.normalized * _BasicEnemy.Data.KnockbackForce, ForceMode.VelocityChange);
-
             _BasicEnemy.AnimationHelper.SetAnimationBool(_BasicEnemy.AnimationData.MovingParamHash, false);
             _BasicEnemy.AnimationHelper.SetAnimationBool(_BasicEnemy.AnimationData.AttackingParamHash, false);
         }

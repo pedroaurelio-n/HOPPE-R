@@ -6,26 +6,31 @@ namespace Tortoise.HOPPER
 {
     public class DamageArea : MonoBehaviour
     {
+        [SerializeField] private GameObject damager;
         [SerializeField] private int damageAmount;
+        [SerializeField] private Vector3 damageDirection;
+        [SerializeField] private float knockbackForce;
         [SerializeField] private float damageCooldown;
         [SerializeField] private bool isOneShot;
         [SerializeField] private bool disableAfterUsage;
 
+        private GameObject _damager;
+        private Vector3 _direction;
         private bool _isDisabled = false;
         private Coroutine _damageCoroutine;
 
-        private IEnumerator DamageCoroutine(Damageable damageable)
+        private IEnumerator DamageCoroutine(Damageable damageable, DamageData data)
         {
             if (isOneShot)
             {
-                damageable.ApplyDamage(damageAmount);
+                damageable.ApplyDamage(data);
                 yield return null;
             }
             else
             {
                 while (true)
                 {
-                    damageable.ApplyDamage(damageAmount);
+                    damageable.ApplyDamage(data);
                     
                     var elapsedTime = 0f;
 
@@ -42,23 +47,30 @@ namespace Tortoise.HOPPER
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent<Damageable>(out Damageable damageable))
+            if (!other.TryGetComponent<Damageable>(out Damageable damageable))
+                return;
+
+            if (!_isDisabled)
             {
-                if (!_isDisabled)
-                    _damageCoroutine = StartCoroutine(DamageCoroutine(damageable));
+                _damager = damager == null ? gameObject : damager;
+                _direction = damageDirection == Vector3.zero ? damageable.gameObject.transform.position - _damager.transform.position : damageDirection;
+
+                var damageData = new DamageData(damageAmount, _damager, _damager.transform.position, _direction, knockbackForce);
+
+                _damageCoroutine = StartCoroutine(DamageCoroutine(damageable, damageData));
             }
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.TryGetComponent<Damageable>(out Damageable damageable))
-            {
-                if (_damageCoroutine != null)
-                    StopCoroutine(_damageCoroutine);
+            if (!other.TryGetComponent<Damageable>(out Damageable damageable))
+                return;
 
-                if (disableAfterUsage)
-                    _isDisabled = true;
-            }
+            if (_damageCoroutine != null)
+                StopCoroutine(_damageCoroutine);
+
+            if (disableAfterUsage)
+                _isDisabled = true;
         }
     }
 }

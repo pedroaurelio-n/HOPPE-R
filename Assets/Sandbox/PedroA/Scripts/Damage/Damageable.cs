@@ -8,6 +8,7 @@ namespace Tortoise.HOPPER
     public class Damageable : MonoBehaviour
     {
         [SerializeField] private int maxHealth;
+        [SerializeField] private float knockbackMultiplier;
         [SerializeField] private float invincibleTime;
 
         [SerializeField] private UnityEvent onDeath;
@@ -21,14 +22,21 @@ namespace Tortoise.HOPPER
 
         private Coroutine _invincibilityCoroutine;
 
+        private Rigidbody _rigidbody;
+
         private void Awake()
         {
+            TryGetComponent<Rigidbody>(out _rigidbody);
+            
             _currentHealth = maxHealth;
             _isInvincible = false;
         }
 
-        public void ApplyDamage(int damage)
+        public void ApplyDamage(DamageData data)
         {
+            if (gameObject == data.Damager)
+                return;
+
             if (_currentHealth <= 0)
                 return;
             
@@ -41,7 +49,8 @@ namespace Tortoise.HOPPER
             if (invincibleTime > 0f)
                 StartInvincibility();
 
-            _currentHealth -= damage;
+            _currentHealth -= data.Amount;
+            ApplyKnockback(data);
 
             if (_currentHealth <= 0)
                 onDeath?.Invoke();
@@ -52,6 +61,18 @@ namespace Tortoise.HOPPER
         public void StartInvincibility()
         {
             _invincibilityCoroutine = StartCoroutine(InvincibilityCoroutine());
+        }
+
+        private void ApplyKnockback(DamageData data)
+        {
+            if (_rigidbody == null)
+                return;
+            
+            _rigidbody.isKinematic = false;
+
+            var direction = data.Direction;
+            direction.y = 0f;
+            _rigidbody.AddForce(direction.normalized * data.KnockbackForce * knockbackMultiplier, ForceMode.VelocityChange);
         }
 
         private IEnumerator InvincibilityCoroutine()
