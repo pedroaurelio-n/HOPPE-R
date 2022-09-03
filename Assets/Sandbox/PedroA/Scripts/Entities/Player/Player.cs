@@ -8,9 +8,6 @@ namespace Tortoise.HOPPER
     [RequireComponent(typeof(PlayerInputHandler))]
     public class Player : Entity
     {
-        public delegate void InteractInput();
-        public static event InteractInput onInteractInput;
-
         [field: SerializeField] public PlayerSO Data { get; private set; }
         [field: SerializeField] public PlayerAnimationData AnimationData { get; private set; }
         [field: SerializeField] public Transform InputSpace { get; private set; }
@@ -18,6 +15,7 @@ namespace Tortoise.HOPPER
         public Rigidbody Rigidbody { get; private set; }
         public PlayerInputHandler Input { get; private set; }
         public FloatingCapsule FloatingCapsule { get; private set; }
+        public Shield Shield { get; private set; }
 
         private PlayerStateMachine _playerStateMachine;
 
@@ -28,6 +26,7 @@ namespace Tortoise.HOPPER
             Rigidbody = GetComponent<Rigidbody>();
             Input = GetComponent<PlayerInputHandler>();
             FloatingCapsule = GetComponent<FloatingCapsule>();
+            Shield = GetComponent<Shield>();
 
             _playerStateMachine = new PlayerStateMachine(this);
             _stateMachine = _playerStateMachine;
@@ -44,9 +43,6 @@ namespace Tortoise.HOPPER
         {
             _playerStateMachine.HandleInput();
             _playerStateMachine.LogicUpdate();
-
-            if (Input.PlayerActions.Interact.WasPressedThisFrame())
-                onInteractInput?.Invoke();
         }
 
         private void OnDrawGizmos()

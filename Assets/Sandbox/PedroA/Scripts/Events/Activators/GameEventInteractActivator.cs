@@ -56,12 +56,12 @@ namespace Tortoise.HOPPER
 
         private void OnEnable()
         {
-            Player.onInteractInput += Interact;
+            PlayerInputHandler.onInteractPerformed += Interact;
         }
 
         private void OnDisable()
         {
-            Player.onInteractInput -= Interact;            
+            PlayerInputHandler.onInteractPerformed -= Interact;            
         }
     }
 }

@@ -41,6 +41,9 @@ namespace Tortoise.HOPPER
         #region InputMethods
         protected override void OnAttackPerformed(InputAction.CallbackContext ctx)
         {
+            if (_Player.Shield.IsShieldActive)
+                return;
+
             _StateMachine.ChangeState(_StateMachine.Attack1State);
         }
         #endregion
