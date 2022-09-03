@@ -12,6 +12,7 @@ namespace Tortoise.HOPPER
         [SerializeField] private float knockbackForce;
         [SerializeField] private float damageCooldown;
         [SerializeField] private bool isOneShot;
+        [SerializeField] private bool onlyDamagePlayer;
         [SerializeField] private bool disableAfterUsage;
 
         private GameObject _damager;
@@ -50,6 +51,9 @@ namespace Tortoise.HOPPER
             if (!other.TryGetComponent<Damageable>(out Damageable damageable))
                 return;
 
+            if (onlyDamagePlayer && !damageable.TryGetComponent<Player>(out Player player))
+                return;
+
             if (!_isDisabled)
             {
                 _damager = damager == null ? gameObject : damager;
@@ -64,6 +68,9 @@ namespace Tortoise.HOPPER
         private void OnTriggerExit(Collider other)
         {
             if (!other.TryGetComponent<Damageable>(out Damageable damageable))
+                return;
+
+            if (onlyDamagePlayer && !damageable.TryGetComponent<Player>(out Player player))
                 return;
 
             if (_damageCoroutine != null)

@@ -8,10 +8,10 @@ namespace Tortoise.HOPPER
     public abstract class BaseGameEventSubscriber : MonoBehaviour
     {
         [SerializeField] private GameEvent gameEvent;
-        [SerializeField] private float delay;
-        [SerializeField] private bool isOneShot;
+        [SerializeField] protected float delay;
+        [SerializeField] protected bool isOneShot;
 
-        private bool _wasRaised = false;
+        protected bool _wasRaised = false;
 
         public void OnEventRaised()
         {

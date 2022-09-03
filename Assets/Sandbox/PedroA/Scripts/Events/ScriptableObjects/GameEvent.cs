@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Tortoise.HOPPER
 {
-    [CreateAssetMenu(fileName = "New Game Event", menuName = "Game Event")]
+    [CreateAssetMenu(fileName = "New Game Event", menuName = "Events/Game Event")]
     public class GameEvent : ScriptableObject
     {
-        private List<BaseGameEventSubscriber> subscribers = new List<BaseGameEventSubscriber>();
+        protected List<BaseGameEventSubscriber> subscribers = new List<BaseGameEventSubscriber>();
 
         public void RaiseEvent()
         {

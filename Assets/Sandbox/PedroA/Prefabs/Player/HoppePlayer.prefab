@@ -45,11 +45,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d51074577589254db033c77fee080f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damager: {fileID: 8450607078733179682}
   damageAmount: 1
   damageDirection: {x: 0, y: 0, z: 0}
   knockbackForce: 4
   damageCooldown: 0
   isOneShot: 1
+  onlyDamagePlayer: 0
   disableAfterUsage: 0
 --- !u!135 &1957580234
 SphereCollider:
@@ -3388,8 +3390,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d8b4ad5ded35d04fae36e0662968dfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  intEvent: {fileID: 11400000, guid: fa15c8c00e5b9b64ea56d74eb83a3c69, type: 2}
   maxHealth: 5
-  knockbackMultiplier: 0
+  knockbackMultiplier: 1
   invincibleTime: 1.5
   onDeath:
     m_PersistentCalls:
@@ -3407,6 +3410,9 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   onDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  onHealthIncrease:
     m_PersistentCalls:
       m_Calls: []
   onInvincibleHit:

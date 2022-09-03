@@ -22,7 +22,7 @@ MonoBehaviour:
   <MaxDistanceFromTarget>k__BackingField: 9
   <MaxDistanceFromArea>k__BackingField: 30
   <MaxYDifference>k__BackingField: 3.5
-  <AttackRange>k__BackingField: 2
+  <AttackRange>k__BackingField: 1.75
   <AttackCooldown>k__BackingField: 2
   <AttackMoveSpeed>k__BackingField: 0.25
   <AttackRotationSpeed>k__BackingField: 5

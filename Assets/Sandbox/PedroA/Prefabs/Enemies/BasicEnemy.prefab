@@ -94,6 +94,72 @@ Transform:
   m_Father: {fileID: 2069218812109578382}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 38.677452, y: -6.4900575, z: 47.333084}
+--- !u!1 &735782582718966566
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1342435732838200598}
+  - component: {fileID: 550072609675079894}
+  - component: {fileID: 6643418854764450005}
+  m_Layer: 0
+  m_Name: Hitbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1342435732838200598
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 735782582718966566}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1249711087220756280}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &550072609675079894
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 735782582718966566}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.25
+  m_Center: {x: 0.05, y: -0.24, z: 0}
+--- !u!114 &6643418854764450005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 735782582718966566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d51074577589254db033c77fee080f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damager: {fileID: 6269863031549834699}
+  damageAmount: 1
+  damageDirection: {x: 0, y: 0, z: 0}
+  knockbackForce: 20
+  damageCooldown: 0
+  isOneShot: 1
+  onlyDamagePlayer: 1
+  disableAfterUsage: 0
 --- !u!1 &745234100036040136
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,7 +473,8 @@ Transform:
   m_LocalPosition: {x: 0.72499996, y: -0.000000019423576, z: 0.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1342435732838200598}
   m_Father: {fileID: 5169135118973274727}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: -1.892725e-18, z: 0}
@@ -909,7 +976,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d8b4ad5ded35d04fae36e0662968dfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
+  intEvent: {fileID: 0}
+  maxHealth: 3
   knockbackMultiplier: 1
   invincibleTime: 0.6
   onDeath:
@@ -942,6 +1010,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onHealthIncrease:
+    m_PersistentCalls:
+      m_Calls: []
   onInvincibleHit:
     m_PersistentCalls:
       m_Calls: []
