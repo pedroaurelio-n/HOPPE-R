@@ -46,13 +46,22 @@ namespace Tortoise.HOPPER
             }
         }
 
+        public void SwitchDamageInfo(GameObject newDamager)
+        {
+            onlyDamagePlayer = false;
+            _damager = newDamager;
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             if (!other.TryGetComponent<Damageable>(out Damageable damageable))
                 return;
 
-            if (onlyDamagePlayer && !damageable.TryGetComponent<Player>(out Player player))
-                return;
+            if (onlyDamagePlayer)
+            {
+                if (!damageable.TryGetComponent<Player>(out Player player) && !damageable.TryGetComponent<Shield>(out Shield shield))
+                    return;
+            }
 
             if (!_isDisabled)
             {
@@ -65,10 +74,7 @@ namespace Tortoise.HOPPER
             }
 
             if (disableAfterUsage)
-            {
                 _isDisabled = true;
-                gameObject.SetActive(false);
-            }
         }
 
         private void OnTriggerExit(Collider other)

@@ -68,7 +68,8 @@ namespace Tortoise.HOPPER
         public void Shoot()
         {
             var temp = Instantiate(objectToShoot, shootPosition.position, Quaternion.identity);
-            temp.velocity = rotatingObject.forward * shootSpeed;
+            if (temp.TryGetComponent<Bullet>(out Bullet bullet))
+                bullet.Initialize(transform, rotatingObject.forward, shootSpeed);
         }
 
         private void Rotate(Vector3 direction)

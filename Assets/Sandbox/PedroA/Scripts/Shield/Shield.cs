@@ -6,6 +6,7 @@ namespace Tortoise.HOPPER
 {
     public class Shield : MonoBehaviour
     {
+        public ShieldHealth ShieldHealth { get; private set; }
         public bool IsShieldActive { get; private set; }
         public bool IsShieldBroken { get; private set; }
         
@@ -34,7 +35,6 @@ namespace Tortoise.HOPPER
 
         private bool _isInputActive;
         private bool _canDisableShield;
-        private bool _isShieldOnBurst;
 
         private Renderer _renderer;
         private Collider _collider;
@@ -44,10 +44,11 @@ namespace Tortoise.HOPPER
             _renderer = GetComponent<Renderer>();
             _collider = GetComponent<Collider>();
 
+            ShieldHealth = GetComponent<ShieldHealth>();
+
             transform.localScale = Vector3.zero;
 
-            _renderer.enabled = false;
-            _collider.enabled = false;
+            EnableRendererAndCollider(false);
 
             _burstScale = new Vector3(burstRadius * 2f, burstRadius * 2f, burstRadius * 2f);
             _normalScale = new Vector3(normalRadius * 2f, normalRadius * 2f, normalRadius * 2f);
@@ -85,19 +86,18 @@ namespace Tortoise.HOPPER
 
         private IEnumerator EnableCoroutine()
         {
-            _isShieldOnBurst = true;
+            ShieldHealth.Damageable.IsInvincible = true;
             IsShieldActive = true;
             _canDisableShield = false;
 
-            _renderer.enabled = true;
-            _collider.enabled = true;
+            EnableRendererAndCollider(true);
 
             _renderer.material.color = burstColor;
 
             transform.DOScale(_burstScale, burstDuration * 0.5f).SetEase(burstInEase);
             yield return _waitForHalfBurst;
 
-            _isShieldOnBurst = false;
+            ShieldHealth.Damageable.IsInvincible = false;
             _canDisableShield = true;
 
             _burstToNormalSequence = DOTween.Sequence();
@@ -131,12 +131,28 @@ namespace Tortoise.HOPPER
 
             IsShieldActive = false;
 
-            _renderer.enabled = false;
-            _collider.enabled = false;
+            EnableRendererAndCollider(false);
 
             _disableCoroutine = null;
 
             transform.localScale = Vector3.zero;
+        }
+
+        private void EnableRendererAndCollider(bool value)
+        {
+            _renderer.enabled = value;
+            _collider.enabled = value;
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.TryGetComponent<Bullet>(out Bullet bullet))
+            {
+                if (!ShieldHealth.Damageable.IsInvincible)
+                    return;
+
+                bullet.DeflectBullet(transform);
+            }
         }
 
         private void OnEnable()
