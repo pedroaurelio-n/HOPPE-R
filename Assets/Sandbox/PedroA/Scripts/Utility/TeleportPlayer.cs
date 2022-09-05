@@ -26,6 +26,9 @@ namespace Tortoise.HOPPER
             
             if (Keyboard.current.digit5Key.wasPressedThisFrame || Keyboard.current.numpad5Key.wasPressedThisFrame)
                 player.position = points[4].position;
+
+            if (Keyboard.current.digit6Key.wasPressedThisFrame || Keyboard.current.numpad6Key.wasPressedThisFrame)
+                player.position = points[5].position;
         }
     }
 }

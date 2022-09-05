@@ -7,6 +7,7 @@ namespace Tortoise.HOPPER
     public class ShootObjects : MonoBehaviour
     {
         [SerializeField] private Transform target;
+        [SerializeField] private Vector3 targetOffset;
         [SerializeField] private Rigidbody objectToShoot;
         [SerializeField] private Transform rotatingObject;
         [SerializeField] private Transform shootPosition;
@@ -37,11 +38,13 @@ namespace Tortoise.HOPPER
 
         private void Update()
         {
-            if (target == null)
-                return;
-
-            var targetDistance = Vector3.Distance(target.position, rotatingObject.position);
-            _isTargetInRange = targetDistance >= minRange && targetDistance <= maxRange;
+            if (target != null)
+            {
+                var targetDistance = Vector3.Distance(target.position, rotatingObject.position);
+                _isTargetInRange = targetDistance >= minRange && targetDistance <= maxRange;
+            }
+            else
+                _isTargetInRange = true;
 
             if (!_isTargetInRange)
                 return;
@@ -58,10 +61,10 @@ namespace Tortoise.HOPPER
 
         private void FixedUpdate()
         {
-            if (!_isTargetInRange)
+            if (!_isTargetInRange || target == null)
                 return;
 
-            var direction = target.position - transform.position;
+            var direction = (target.position + targetOffset) - transform.position;
             Rotate(direction.normalized);
         }
 
@@ -80,11 +83,17 @@ namespace Tortoise.HOPPER
 
         private void OnDrawGizmosSelected()
         {
-            Gizmos.color = Color.cyan;
-            Gizmos.DrawWireSphere(rotatingObject.position, minRange);
+            if (minRange > 0f)
+            {
+                Gizmos.color = Color.cyan;
+                Gizmos.DrawWireSphere(rotatingObject.position, minRange);
+            }
 
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(rotatingObject.position, maxRange);
+            if (maxRange > 0f)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawWireSphere(rotatingObject.position, maxRange);
+            }
         }
     }
 }

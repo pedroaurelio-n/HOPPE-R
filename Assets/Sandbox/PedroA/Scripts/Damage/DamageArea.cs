@@ -6,6 +6,8 @@ namespace Tortoise.HOPPER
 {
     public class DamageArea : MonoBehaviour
     {
+        public GameObject Damager { get; set; }
+
         [SerializeField] private GameObject damager;
         [SerializeField] private int damageAmount;
         [SerializeField] private Vector3 damageDirection;
@@ -15,7 +17,6 @@ namespace Tortoise.HOPPER
         [SerializeField] private bool onlyDamagePlayer;
         [SerializeField] private bool disableAfterUsage;
 
-        private GameObject _damager;
         private Vector3 _direction;
         private bool _isDisabled = false;
         private Coroutine _damageCoroutine;
@@ -49,7 +50,7 @@ namespace Tortoise.HOPPER
         public void SwitchDamageInfo(GameObject newDamager)
         {
             onlyDamagePlayer = false;
-            _damager = newDamager;
+            Damager = newDamager;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -65,10 +66,12 @@ namespace Tortoise.HOPPER
 
             if (!_isDisabled)
             {
-                _damager = damager == null ? gameObject : damager;
-                _direction = damageDirection == Vector3.zero ? damageable.gameObject.transform.position - _damager.transform.position : damageDirection;
+                if (Damager == null)
+                    Damager = damager == null ? gameObject : damager;
+                    
+                _direction = damageDirection == Vector3.zero ? damageable.gameObject.transform.position - Damager.transform.position : damageDirection;
 
-                var damageData = new DamageData(damageAmount, _damager, _damager.transform.position, _direction, knockbackForce);
+                var damageData = new DamageData(damageAmount, Damager, Damager.transform.position, _direction, knockbackForce);
 
                 _damageCoroutine = StartCoroutine(DamageCoroutine(damageable, damageData));
             }

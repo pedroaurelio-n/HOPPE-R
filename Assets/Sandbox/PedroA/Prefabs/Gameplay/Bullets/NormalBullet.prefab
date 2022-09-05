@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1691090460816631423}
   - component: {fileID: 1968242568004047760}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: NormalBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,4 +148,4 @@ MonoBehaviour:
   damageCooldown: 0
   isOneShot: 1
   onlyDamagePlayer: 1
-  disableAfterUsage: 1
+  disableAfterUsage: 0

@@ -25,6 +25,7 @@ namespace Tortoise.HOPPER
 
         public void Initialize(Transform source, Vector3 direction, float shootSpeed)
         {
+            _damageArea.Damager = source.gameObject;
             _source = source;
             _initialSpeed = shootSpeed;
             _rigidbody.velocity = direction * _initialSpeed;
@@ -37,7 +38,7 @@ namespace Tortoise.HOPPER
 
             _wasDeflected = true;
 
-            var newDirection = _source.position - shield.position;
+            var newDirection = _source.position - transform.position;
             _rigidbody.velocity = newDirection.normalized * _initialSpeed;
 
             _damageArea.SwitchDamageInfo(shield.root.gameObject);
@@ -45,6 +46,9 @@ namespace Tortoise.HOPPER
 
         private void OnTriggerEnter(Collider other)
         {
+            if (other.gameObject == _damageArea.Damager)
+                return;
+
             if (other.TryGetComponent<DamageArea>(out DamageArea damageArea))
                 return;
             
