@@ -23,7 +23,7 @@ namespace Tortoise.HOPPER
         private IEnumerator OnEventDelayed(int value)
         {
             yield return new WaitForSeconds(delay);
-            InvokeEvent();
+            InvokeEvent(value);
         }
 
         protected virtual void InvokeEvent(int value)

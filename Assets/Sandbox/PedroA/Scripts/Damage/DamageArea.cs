@@ -63,6 +63,12 @@ namespace Tortoise.HOPPER
 
                 _damageCoroutine = StartCoroutine(DamageCoroutine(damageable, damageData));
             }
+
+            if (disableAfterUsage)
+            {
+                _isDisabled = true;
+                gameObject.SetActive(false);
+            }
         }
 
         private void OnTriggerExit(Collider other)
@@ -75,9 +81,6 @@ namespace Tortoise.HOPPER
 
             if (_damageCoroutine != null)
                 StopCoroutine(_damageCoroutine);
-
-            if (disableAfterUsage)
-                _isDisabled = true;
         }
     }
 }

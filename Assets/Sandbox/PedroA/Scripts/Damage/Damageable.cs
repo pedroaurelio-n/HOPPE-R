@@ -7,6 +7,15 @@ namespace Tortoise.HOPPER
 {
     public class Damageable : MonoBehaviour
     {
+        public bool IsInvincible 
+        {
+            get => _isInvincible;
+            set => _isInvincible = value;
+        }
+
+        public int MaxHealth { get => maxHealth; }
+        public int Health { get => _currentHealth; }
+
         [SerializeField] private IntEvent intEvent;
         [SerializeField] private int maxHealth;
         [SerializeField] private float knockbackMultiplier;
@@ -32,14 +41,17 @@ namespace Tortoise.HOPPER
             
             _currentHealth = maxHealth;
             _isInvincible = false;
+        }
 
-            intEvent?.RaiseEvent(_currentHealth);
+        private void Start()
+        {
+            intEvent?.RaiseEvent(_currentHealth);            
         }
 
         public void IncreaseHealth(int value)
         {
-            if (_currentHealth <= 0)
-                return;
+            // if (_currentHealth <= 0)
+            //     return;
 
             _currentHealth += value;
 

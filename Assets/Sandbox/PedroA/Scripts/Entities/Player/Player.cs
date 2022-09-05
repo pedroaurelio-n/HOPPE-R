@@ -26,7 +26,7 @@ namespace Tortoise.HOPPER
             Rigidbody = GetComponent<Rigidbody>();
             Input = GetComponent<PlayerInputHandler>();
             FloatingCapsule = GetComponent<FloatingCapsule>();
-            Shield = GetComponent<Shield>();
+            Shield = GetComponentInChildren<Shield>();
 
             _playerStateMachine = new PlayerStateMachine(this);
             _stateMachine = _playerStateMachine;
