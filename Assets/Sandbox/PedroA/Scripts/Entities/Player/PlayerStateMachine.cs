@@ -26,6 +26,8 @@ namespace Tortoise.HOPPER
         public PlayerAttack2State Attack2State { get; }
         public PlayerAttack3State Attack3State { get; }
 
+        public PlayerDamageState DamageState { get; }
+
         public PlayerStateMachine(Player player)
         {
             Player = player;
@@ -39,6 +41,8 @@ namespace Tortoise.HOPPER
             Attack1State = new PlayerAttack1State(this);
             Attack2State = new PlayerAttack2State(this);
             Attack3State = new PlayerAttack3State(this);
+
+            DamageState = new PlayerDamageState(this);
 
             var height = Player.Data.JumpHeight - 1f;
             JumpForce = Mathf.Sqrt(-2f * height * Physics.gravity.y);

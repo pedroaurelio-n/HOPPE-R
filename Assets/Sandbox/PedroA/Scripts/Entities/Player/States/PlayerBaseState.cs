@@ -65,17 +65,6 @@ namespace Tortoise.HOPPER
         #endregion
 
         #region MainMethods
-        private void ReadMovementInput()
-        {
-            if (_StateMachine.SlopeSpeedModifier == 0f)
-                return;
-
-            _StateMachine.MovementInput = _Player.Input.PlayerActions.Move.ReadValue<Vector2>();
-            var clampedInput = Mathf.Clamp01(Mathf.Abs(_StateMachine.MovementInput.x) + Mathf.Abs(_StateMachine.MovementInput.y));
-
-            _StateMachine.MoveAmount = Mathf.MoveTowards(_StateMachine.MoveAmount, clampedInput, _Player.Data.PosAccel * Time.deltaTime);
-        }
-
         private void Move()
         {
             if (_StateMachine.MovementInput == Vector2.zero)
@@ -98,6 +87,17 @@ namespace Tortoise.HOPPER
         #endregion
 
         #region ReusableMethods
+        protected virtual void ReadMovementInput()
+        {
+            if (_StateMachine.SlopeSpeedModifier == 0f)
+                return;
+
+            _StateMachine.MovementInput = _Player.Input.PlayerActions.Move.ReadValue<Vector2>();
+            var clampedInput = Mathf.Clamp01(Mathf.Abs(_StateMachine.MovementInput.x) + Mathf.Abs(_StateMachine.MovementInput.y));
+
+            _StateMachine.MoveAmount = Mathf.MoveTowards(_StateMachine.MoveAmount, clampedInput, _Player.Data.PosAccel * Time.deltaTime);
+        }
+
         protected virtual void AddInputCallbacks()
         {
             _Player.Input.PlayerActions.Jump.performed += OnJumpPerformed;

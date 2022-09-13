@@ -45,6 +45,14 @@ namespace Tortoise.HOPPER
             _playerStateMachine.LogicUpdate();
         }
 
+        public override void Damage()
+        {
+            if (_playerStateMachine.CurrentState == _playerStateMachine.DamageState)
+                return;
+
+            _playerStateMachine.ChangeState(_playerStateMachine.DamageState);
+        }
+
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;

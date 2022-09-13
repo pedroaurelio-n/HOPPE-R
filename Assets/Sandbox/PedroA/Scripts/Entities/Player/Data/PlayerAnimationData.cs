@@ -16,6 +16,7 @@ namespace Tortoise.HOPPER
         public int FallingParamHash { get; private set; }
         public int GlidingParamHash { get; private set; }
         public int AttackingParamHash { get; private set; }
+        public int DamageParamHash { get; private set; }
         public int ComboStepParamHash { get; private set; }
 
         [Header("Animation Parameters")]
@@ -27,6 +28,7 @@ namespace Tortoise.HOPPER
         [field: SerializeField] private string FallingParam = "IsFalling";
         [field: SerializeField] private string GlidingParam = "IsGliding";
         [field: SerializeField] private string AttackingParam = "IsAttacking";
+        [field: SerializeField] private string DamageParam = "WasDamaged";
         [field: SerializeField] private string ComboStepParam = "ComboStep";
 
         public void Initialize()
@@ -39,6 +41,7 @@ namespace Tortoise.HOPPER
             FallingParamHash = Animator.StringToHash(FallingParam);
             GlidingParamHash = Animator.StringToHash(GlidingParam);
             AttackingParamHash = Animator.StringToHash(AttackingParam);
+            DamageParamHash = Animator.StringToHash(DamageParam);
             ComboStepParamHash = Animator.StringToHash(ComboStepParam);
         }
     }
